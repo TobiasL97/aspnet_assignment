@@ -1,0 +1,20 @@
+.product-grid {
+
+    margin-bottom: 80px;
+    
+    >.container {
+
+        .grid-header {
+            font-size: 24px;
+            color: $color-dark-2;
+            margin-bottom: 30px;
+        }
+
+        .grid-content {
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+    }
+}

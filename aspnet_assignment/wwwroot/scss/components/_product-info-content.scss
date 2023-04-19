@@ -1,0 +1,58 @@
+.product-info-content {
+    margin-top: 20px;
+
+    @include lg {
+        margin-top: 40px;
+    }
+
+    >.container {
+
+        .description-header {
+
+            font-size: 20px;
+            font-weight: $font-weight-semibold;
+            color: $color-dark-1;
+            margin-bottom: 30px;
+            
+            @include md {
+                font-size: 24px;
+            }
+        }
+
+        .description {
+
+            display: flex;
+            border-bottom: 1px solid $color-dark-5;
+            padding-bottom: 50px;
+            margin-bottom: 60px;
+
+            .description-text {
+
+
+
+                .description-paragraph {
+                    margin: 0px 0px 30px 0px;
+                    font-size: 16px;
+                    color: $color-dark-3;
+                    font-family: $font-roboto;
+
+                    &:last-child {
+                        margin: 0px;
+                    }
+                }
+
+            }
+
+
+
+            .description-image {
+                display: none;
+                margin-left: 30px;
+
+                @include lg {
+                    display: block;
+                }
+            }
+        }
+    }
+}

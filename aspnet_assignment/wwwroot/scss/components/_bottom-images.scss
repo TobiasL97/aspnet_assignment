@@ -1,0 +1,22 @@
+.bottom-images {
+
+    background-color: $color-theme-4;
+    >.container {
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        text-align: center;
+        gap: 25px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+
+
+        .bottom-image {
+
+
+            width: 100%;
+        }
+
+    }
+}

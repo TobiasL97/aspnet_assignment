@@ -1,0 +1,250 @@
+.product-details {
+    padding-top: 100px;
+    padding-bottom: 50px;
+
+    >.container {
+        @include md {
+            display: flex;
+        }
+
+        .product-detail-image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: repeat(4, 1fr);
+            justify-content: center;
+            gap: 5px;
+            flex: 1;
+
+            .product-image-1 {
+                width: 100%;
+                object-fit: contain;
+                grid-column: 1 / -1;
+                grid-row: 1 / 4;
+            }
+
+            .small-product-image {
+                width: 100%;
+            }
+        }
+
+        .product-detail-info {
+            flex: 1;
+            
+            @include md {
+                margin-left: 40px;
+            }
+
+            @include xl {
+                margin-left: 120px;
+            }
+
+            .product-detail-header {
+                font-family: $font-poppins;
+                font-size: 18px;
+                font-weight: $font-weight-semibold;
+                color: $color-dark-2;
+
+                @include md {
+                    margin-bottom: 5px;
+                }
+
+                @include lg {
+                    font-size: 24px;
+                    margin-bottom: 30px;
+                }
+            }
+    
+            .procuct-detail-description {
+                font-family: $font-roboto;
+                font-size: 14px;
+                color: $color-dark-3;
+                padding-bottom: 5px;
+                border-bottom: 1px solid $color-dark-5;
+
+                @include md {
+                    margin-bottom: 10px;
+                    font-size: 12px;
+                }
+
+                @include lg {
+                    display: block;
+                    font-size: 16px;
+                    padding-bottom: 30px;
+                    margin-bottom: 20px;
+                }
+            }
+    
+            .product-detail-rating {
+                display: flex;
+                margin-bottom: 10px;
+    
+                .rating-stars {
+                    color: $color-yellow;
+                    margin-right: 20px;
+                }
+        
+                .rating-reviews {
+                    font-family: $font-roboto;
+                    color: $color-dark-0;
+                    margin: 0;
+                    font-size: 14px;
+
+                    @include lg {
+                        font-size: 16px;
+                    }
+                }
+            }
+    
+            .product-detail-price {
+                font-family: $font-poppins;
+                font-size: 18px;
+                font-weight: $font-weight-semibold;
+                color: $color-dark-2;
+
+                @include lg {
+                    font-size: 24px;
+                }
+            }
+    
+            .add-to-cart {
+    
+                display: flex;
+                margin-bottom: 20px;
+    
+                .product-detail-count {
+    
+                    display: flex;
+                    align-items: center;
+                    border: 1px solid $color-dark-5;
+    
+                    .subtract {
+                        border: none;
+                        background-color: transparent;
+                        border-right: 1px solid $color-dark-5;
+                        padding: 5px 15px;
+                        height: 100%;
+                        font-weight: $font-weight-semibold;
+                        transition: 0.1s ease-in-out;
+
+                        &:hover {
+                            background-color: rgb(233, 233, 233);
+                        }
+
+                        @include xl {
+                            padding: 10px 20px;
+                        }
+                    }
+    
+                    .add {
+                        border: none;
+                        background-color: transparent;
+                        border-left: 1px solid $color-dark-5;
+                        padding: 5px 15px;
+                        height: 100%;
+                        font-weight: $font-weight-semibold;
+                        transition: 0.1s ease-in-out;
+
+                        &:hover {
+                            background-color: rgb(233, 233, 233);
+                        }
+
+                        @include xl {
+                            padding: 10px 20px;
+                        }
+                    }
+    
+                    > p {
+                        margin: 0;
+                        padding: 0px 20px;
+                        font-size: 16px;
+                    }
+                }
+    
+                .add-to-cart-btn {
+                    margin-left: 20px;
+                    border: none;
+                    color: white;
+                    font-family: $font-roboto;
+                    background-color: $color-theme-1;
+                    padding: 6px 20px;
+                    transition: 0.1s ease-in-out;
+
+                    &:hover {
+                        background-color: #b42137;
+                    }
+    
+                    > i {
+                        margin-left: 15px;
+                    }
+                }
+
+            }
+
+            .product-stock {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+
+                .stock {
+                    display: flex;
+
+                    .out-of-stock {
+                        padding: 10px;
+                        background-color: $color-theme-1;
+                        border-radius: 10px;
+                    }
+
+                    .incoming-delivery {
+                        padding: 10px;
+                        background-color: $color-yellow;
+                        border-radius: 10px;
+                        margin-left: 4px;
+                    }
+
+                    .in-stock {
+                        padding: 10px;
+                        background-color: $color-green;
+                        border-radius: 10px;
+                        margin-left: 4px;
+                    }
+                }
+
+                .sku {
+                    margin: 0px 0px 0px 35px;
+                }
+            }
+
+            .wishlist-btn {
+                background-color: transparent;
+                border: 1px solid $color-dark-5;
+                padding: 10px 30px;
+                margin-bottom: 20px;
+                transition: 0.1s ease-in-out;
+
+                &:hover {
+                    background-color: rgb(233, 233, 233);
+                }
+
+                @include md {
+                    padding: 5px 20px;
+                }
+
+                @include lg {
+                    padding: 10px 30px;
+                }
+            }
+
+            .product-category {
+                display: flex;
+
+                .category {
+                    margin: 0px 20px 0px 0px;
+                }
+
+                .category-tags {
+                    margin: 0px 0px 0px 0px;
+                }
+            }
+        }
+    }
+}
