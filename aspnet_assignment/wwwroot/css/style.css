@@ -365,7 +365,7 @@ header .menu-links {
 header .menu-links .link {
   font-family: "Poppins", sans-serif;
   border: 1px solid #202020;
-  color: #FFFFFF;
+  color: black;
   display: flex;
   justify-content: center;
   padding: 20px 0;
@@ -398,17 +398,20 @@ header .menu-icons {
   right: 0;
   padding: 20px;
   background-color: #292929;
-  color: #FFFFFF;
+  color: white;
 }
 @media (min-width: 1200px) {
   header .menu-icons {
     position: static;
     padding: 0;
     background-color: #FFFFFF;
+    color: #292929;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
   }
+}
+header .menu-icons .my-account-icon {
+  padding: 20px;
 }
 header .menu-icons .link {
   font-family: "Poppins", sans-serif;
@@ -956,6 +959,42 @@ footer .container {
   }
 }
 
+.signin-section {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+@media (min-width: 992px) {
+  .signin-section {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+.signin-section > .container .signin {
+  box-shadow: 0px 0px 15px 1px #E1E1E1;
+  padding: 40px;
+}
+.signin-section > .container .signin-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 992px) {
+  .signin-section > .container .signin-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.signin-section > .container .signin-form .form-long {
+  grid-column: 1/-1;
+}
+.signin-section > .container .signin-form .btn-theme {
+  grid-column: 1/2;
+}
+@media (min-width: 768px) {
+  .signin-section > .container .signin-form .btn-theme {
+    width: 30%;
+  }
+}
+
 .product-details {
   padding-top: 100px;
   padding-bottom: 50px;
@@ -1288,4 +1327,35 @@ footer .container {
     display: block;
     padding-top: 80px;
   }
+}
+
+.admin-controls {
+  padding-top: 120px;
+}
+.admin-controls > .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+.admin-controls > .container .list {
+  margin-top: 30px;
+  box-shadow: 0px 0px 15px 1px #E1E1E1;
+  border-radius: 5px;
+  padding: 20px;
+  height: 70vh;
+}
+.admin-controls > .container .create-btn {
+  text-align: right;
+}
+.admin-controls > .container .create-btn > a {
+  text-decoration: none;
+  background-color: #FA3150;
+  color: white;
+  border-radius: 6px;
+  padding: 10px 25px;
+  transition: 0.2s ease-in-out;
+}
+.admin-controls > .container .create-btn > a:hover {
+  background-color: #9c1e31;
+  cursor: pointer;
 }

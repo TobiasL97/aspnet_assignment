@@ -18,9 +18,11 @@ namespace aspnet_assignment.Helpers.Services
 
         public async Task<AddressEntity> GetOrCreateAddressAsync(AddressEntity addressEntity)
         {
-            var address = await _addressRepo.GetAsync(x => x.StreetName == addressEntity.StreetName && x.City == addressEntity.City && x.PostalCode == addressEntity.PostalCode);
-
-            var entity = await _addressRepo.AddAsync(address);
+            var entity = await _addressRepo.GetAsync(x => x.StreetName == addressEntity.StreetName && x.City == addressEntity.City && x.PostalCode == addressEntity.PostalCode);
+            if(entity == null)
+            {
+                entity = await _addressRepo.AddAsync(addressEntity);
+            }
             return entity;
         }
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace aspnet_assignment.Migrations
 {
     /// <inheritdoc />
-    public partial class IdentityCreated : Migration
+    public partial class initIdentityDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace aspnet_assignment.Controllers
 {
@@ -11,6 +12,13 @@ namespace aspnet_assignment.Controllers
 
 
         public IActionResult ProductDetail()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult CreateProduct()
         {
             return View();
         }

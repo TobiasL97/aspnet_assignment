@@ -12,8 +12,8 @@ using aspnet_assignment.Contexts;
 namespace aspnet_assignment.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230419122753_Identity Created")]
-    partial class IdentityCreated
+    [Migration("20230424140701_init IdentityDatabase")]
+    partial class initIdentityDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

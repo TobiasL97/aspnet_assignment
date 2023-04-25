@@ -10,11 +10,14 @@ namespace aspnet_assignment.Helpers.Services
     public class AuthenticationService
     {
         private readonly UserManager<CustomUser> _userManager;
+        private readonly SignInManager<CustomUser> _signInManager;
         private readonly AddressService _addressService;
 
-        public AuthenticationService(UserManager<CustomUser> userManager)
+        public AuthenticationService(UserManager<CustomUser> userManager, AddressService addressService, SignInManager<CustomUser> signInManager)
         {
             _userManager = userManager;
+            _addressService = addressService;
+            _signInManager = signInManager;
         }
 
         public async Task<bool> CheckIfUserExistsAsync(Expression<Func<CustomUser, bool>> expression)
@@ -24,18 +27,38 @@ namespace aspnet_assignment.Helpers.Services
 
         public async Task<bool> CreateUserAsync(SignUpUserViewModel viewModel)
         {
-            var user = viewModel;
+            CustomUser user = viewModel;
 
-            var result = await _userManager.CreateAsync(user, viewModel.Password);
-            if(result.Succeeded)
+            
+            if (!await _userManager.Users.AnyAsync())
             {
-                var address = await _addressService.GetOrCreateAddressAsync(viewModel);
-                if (address != null)
-                {
-                    await _addressService.AddAddressAsync(user, address);
-                    return true;
-                }
+                await _userManager.CreateAsync(user, viewModel.Password);
+                await _userManager.AddToRoleAsync(user, "Admin");
             }
+            else
+            {
+                await _userManager.CreateAsync(user, viewModel.Password);
+                await _userManager.AddToRoleAsync(user, "User");
+            }
+         
+            var address = await _addressService.GetOrCreateAddressAsync(viewModel);
+            if (address != null)
+            {
+                await _addressService.AddAddressAsync(user, address);
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> LoginAsync(SignInUserViewModel viewModel)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == viewModel.Email);
+            if (user != null)
+            {
+                var result = await _signInManager.PasswordSignInAsync(user, viewModel.Password, false, false);
+                return result.Succeeded;
+            }
+
             return false;
         }
     }

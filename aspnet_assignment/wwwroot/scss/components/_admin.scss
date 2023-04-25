@@ -1,0 +1,43 @@
+.admin-controls {
+    padding-top: 120px;
+
+    > .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+
+        .user-list {
+        }
+
+        .list {
+            margin-top: 30px;
+            box-shadow: 0px 0px 15px 1px $color-dark-5;
+            border-radius: 5px;
+            padding: 20px;
+            height: 70vh;
+        }
+
+        .create-btn {
+            text-align: right;
+
+
+            > a {
+                text-decoration: none;
+                background-color: $color-theme-1;
+                color: white;
+                border-radius: 6px;
+                padding: 10px 25px;
+                transition: 0.2s ease-in-out;
+
+                &:hover {
+                    background-color: #9c1e31;
+                    cursor: pointer;
+                    
+                }
+            }
+        }
+
+        .product-list {
+        }
+    }
+}

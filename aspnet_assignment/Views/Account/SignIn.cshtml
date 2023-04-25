@@ -1,0 +1,27 @@
+﻿@model SignInUserViewModel
+@{
+	ViewData["Title"] = "Sign in";
+}
+
+<section class="signin-section">
+	<div class="container">
+		<div class="signin">
+			<p>Enter Email and Password to sign in!</p>
+			<div asp-validation-summary="ModelOnly"></div>
+			<form method="post" enctype="multipart/form-data" class="signin-form">
+				<div class="form-long">
+					<label asp-for="Email" class="form-label">E-mail*</label>
+					<input asp-for="Email" class="form-control" />
+					<small class="text-danger"><span asp-validation-for="Email"></span></small>
+				</div>
+				<div class="form-long">
+					<label asp-for="Password" class="form-label">Password*</label>
+					<input asp-for="Password" class="form-control" />
+					<small class="text-danger"><span asp-validation-for="Password"></span></small>
+				</div>
+				<button class="btn-theme" type="submit">SUBMIT</button>
+			</form>
+
+		</div>
+	</div>
+</section>

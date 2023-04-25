@@ -1,2 +1,6 @@
-﻿@using aspnet_assignment.ViewModels;
+﻿@using Microsoft.AspNetCore.Identity;
+@using aspnet_assignment.Models.Identity;
+@using aspnet_assignment.ViewModels;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject SignInManager<CustomUser> signInManager
+@inject UserManager<CustomUser> userManager

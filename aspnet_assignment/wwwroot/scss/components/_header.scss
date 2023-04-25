@@ -13,21 +13,21 @@ header {
         justify-content: space-between;
         align-items: center;
         grid-template-columns: 1fr 1fr;
-        grid-template-areas:    "logo toggle";
+        grid-template-areas: "logo toggle";
 
-        @include lg  {
+        @include lg {
             grid-template-columns: 4fr 4fr;
-            grid-template-areas:    "logo menulinks";
+            grid-template-areas: "logo menulinks";
         }
 
         @include xl {
             grid-template-columns: 4fr 4fr 1fr;
-            grid-template-areas:    "logo menulinks menuicons";
+            grid-template-areas: "logo menulinks menuicons";
         }
     }
 
     .logo {
-        grid-area: logo; 
+        grid-area: logo;
         display: flex;
         align-items: center;
         font-size: 27px;
@@ -63,8 +63,8 @@ header {
             background-color: transparent;
             color: $color-dark-2;
             display: flex;
-            justify-content: flex-end;   
-            align-items: center;  
+            justify-content: flex-end;
+            align-items: center;
         }
 
         @include xl {
@@ -74,8 +74,8 @@ header {
         .link {
             font-family: $font-poppins;
             border: 1px solid $color-dark-1;
-            color: $color-white;
-            display: flex; 
+            color: black;
+            display: flex;
             justify-content: center;
             padding: 20px 0;
             text-decoration: none;
@@ -92,7 +92,7 @@ header {
                 margin: 0 0 0 30px;
                 justify-content: right;
                 font-size: 16px;
-                
+
                 &:hover {
                     background-color: transparent;
                     color: $color-theme-1;
@@ -110,15 +110,19 @@ header {
         right: 0;
         padding: 20px;
         background-color: $color-dark-2;
-        color: $color-white;
+        color: white;
 
         @include xl {
             position: static;
             padding: 0;
             background-color: $color-white;
+            color: $color-dark-2;
             display: flex;
-            justify-content: flex-end;
             align-items: center;
+        }
+
+        .my-account-icon {
+            padding: 20px;
         }
 
         .link {
@@ -144,7 +148,13 @@ header {
             }
         }
 
+        .my-account-icon {
 
+
+            @include xl {
+
+            }
+        }
     }
 
     .toggle {
