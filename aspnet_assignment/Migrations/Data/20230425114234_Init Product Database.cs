@@ -41,17 +41,16 @@ namespace aspnet_assignment.Migrations.Data
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<decimal>(type: "Money", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StockId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StockId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    StockId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Stocks_StockId1",
-                        column: x => x.StockId1,
+                        name: "FK_Products_Stocks_StockId",
+                        column: x => x.StockId,
                         principalTable: "Stocks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -61,14 +60,12 @@ namespace aspnet_assignment.Migrations.Data
                 name: "ProductCategories",
                 columns: table => new
                 {
-                    ProductId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    AddressId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProductId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductCategories", x => new { x.ProductId, x.AddressId });
+                    table.PrimaryKey("PK_ProductCategories", x => new { x.ProductId, x.CategoryId });
                     table.ForeignKey(
                         name: "FK_ProductCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -76,8 +73,28 @@ namespace aspnet_assignment.Migrations.Data
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductCategories_Products_ProductId1",
-                        column: x => x.ProductId1,
+                        name: "FK_ProductCategories_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductImages",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductImages_Products_ProductyId",
+                        column: x => x.ProductyId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -90,15 +107,14 @@ namespace aspnet_assignment.Migrations.Data
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ReviewEntity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ReviewEntity_Products_ProductId1",
-                        column: x => x.ProductId1,
+                        name: "FK_ReviewEntity_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -110,19 +126,19 @@ namespace aspnet_assignment.Migrations.Data
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductCategories_ProductId1",
-                table: "ProductCategories",
-                column: "ProductId1");
+                name: "IX_ProductImages_ProductyId",
+                table: "ProductImages",
+                column: "ProductyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_StockId1",
+                name: "IX_Products_StockId",
                 table: "Products",
-                column: "StockId1");
+                column: "StockId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReviewEntity_ProductId1",
+                name: "IX_ReviewEntity_ProductId",
                 table: "ReviewEntity",
-                column: "ProductId1");
+                column: "ProductId");
         }
 
         /// <inheritdoc />
@@ -130,6 +146,9 @@ namespace aspnet_assignment.Migrations.Data
         {
             migrationBuilder.DropTable(
                 name: "ProductCategories");
+
+            migrationBuilder.DropTable(
+                name: "ProductImages");
 
             migrationBuilder.DropTable(
                 name: "ReviewEntity");

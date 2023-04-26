@@ -39,23 +39,15 @@ namespace aspnet_assignment.Migrations.Data
 
             modelBuilder.Entity("aspnet_assignment.Models.Entities.ProductCategoryEntity", b =>
                 {
-                    b.Property<string>("ProductId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AddressId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductId1")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ProductId", "AddressId");
+                    b.HasKey("ProductId", "CategoryId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("ProductId1");
 
                     b.ToTable("ProductCategories");
                 });
@@ -71,13 +63,9 @@ namespace aspnet_assignment.Migrations.Data
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("Money");
 
-                    b.Property<string>("StockId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("StockId1")
+                    b.Property<Guid>("StockId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
@@ -86,9 +74,32 @@ namespace aspnet_assignment.Migrations.Data
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StockId1");
+                    b.HasIndex("StockId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("aspnet_assignment.Models.Entities.ProductImageEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductyId");
+
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("aspnet_assignment.Models.Entities.ReviewEntity", b =>
@@ -103,16 +114,12 @@ namespace aspnet_assignment.Migrations.Data
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ProductId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ProductId1")
+                    b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId1");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ReviewEntity");
                 });
@@ -142,7 +149,7 @@ namespace aspnet_assignment.Migrations.Data
 
                     b.HasOne("aspnet_assignment.Models.Entities.ProductEntity", "Product")
                         .WithMany("Categories")
-                        .HasForeignKey("ProductId1")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -155,18 +162,29 @@ namespace aspnet_assignment.Migrations.Data
                 {
                     b.HasOne("aspnet_assignment.Models.Entities.StockEntity", "Stock")
                         .WithMany("Products")
-                        .HasForeignKey("StockId1")
+                        .HasForeignKey("StockId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Stock");
                 });
 
+            modelBuilder.Entity("aspnet_assignment.Models.Entities.ProductImageEntity", b =>
+                {
+                    b.HasOne("aspnet_assignment.Models.Entities.ProductEntity", "Producty")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producty");
+                });
+
             modelBuilder.Entity("aspnet_assignment.Models.Entities.ReviewEntity", b =>
                 {
                     b.HasOne("aspnet_assignment.Models.Entities.ProductEntity", "Product")
                         .WithMany("Reviews")
-                        .HasForeignKey("ProductId1")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -181,6 +199,8 @@ namespace aspnet_assignment.Migrations.Data
             modelBuilder.Entity("aspnet_assignment.Models.Entities.ProductEntity", b =>
                 {
                     b.Navigation("Categories");
+
+                    b.Navigation("ProductImages");
 
                     b.Navigation("Reviews");
                 });

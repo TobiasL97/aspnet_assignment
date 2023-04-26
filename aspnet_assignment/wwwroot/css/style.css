@@ -1344,6 +1344,30 @@ footer .container {
   padding: 20px;
   height: 70vh;
 }
+.admin-controls > .container .list .list-item {
+  display: flex;
+  border-bottom: 1px solid #AEAEAE;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.admin-controls > .container .list .list-item > div {
+  display: flex;
+  align-items: center;
+}
+.admin-controls > .container .list .list-item > div > p {
+  margin-bottom: 0px;
+}
+.admin-controls > .container .list .list-item > p {
+  margin-bottom: 0px;
+}
+.admin-controls > .container .list .list-item .list-item-label {
+  font-weight: 600;
+}
+.admin-controls > .container .list .list-item .list-item-icons > button {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
 .admin-controls > .container .create-btn {
   text-align: right;
 }
@@ -1358,4 +1382,21 @@ footer .container {
 .admin-controls > .container .create-btn > a:hover {
   background-color: #9c1e31;
   cursor: pointer;
+}
+
+.create-product-section {
+  margin-top: 120px;
+}
+.create-product-section > .container .create-product .create-product-form .add-image {
+  border: none;
+  background-color: #636363;
+  color: white;
+  border-radius: 5px;
+}
+.create-product-section > .container .create-product .create-product-form .create-product-btn {
+  background-color: #FA3150;
+  padding: 10px 30px;
+  color: white;
+  border: none;
+  border-radius: 5px;
 }

@@ -6,8 +6,6 @@
         grid-template-columns: 1fr 1fr;
         gap: 50px;
 
-        .user-list {
-        }
 
         .list {
             margin-top: 30px;
@@ -15,6 +13,43 @@
             border-radius: 5px;
             padding: 20px;
             height: 70vh;
+
+            .list-item {
+                display: flex;
+                border-bottom: 1px solid $color-dark-4;
+                margin-bottom: 20px;
+                justify-content: space-between;
+                
+
+                >div {
+                    display: flex;
+                    align-items: center;
+
+                    > p {
+                        margin-bottom: 0px;
+                    }
+                }
+
+                > p {
+                    margin-bottom: 0px;
+                }
+
+                .list-item-label {
+
+                    font-weight: $font-weight-semibold;
+                }
+
+                .list-item-icons {
+
+                    > button {
+
+                        background-color: transparent;
+                        border: none;
+                        padding: 0px;
+                    }
+                }
+                
+            }
         }
 
         .create-btn {
@@ -37,7 +72,5 @@
             }
         }
 
-        .product-list {
-        }
     }
 }

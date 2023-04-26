@@ -1,4 +1,5 @@
 ﻿using aspnet_assignment.Models.Entities;
+using aspnet_assignment.ViewModels;
 using Microsoft.AspNetCore.Identity;
 
 namespace aspnet_assignment.Models.Identity
@@ -13,4 +14,6 @@ namespace aspnet_assignment.Models.Identity
 
         public ICollection<UserAddressEntity> Addresses { get; set; } = new HashSet<UserAddressEntity>();
     }
+
+
 }

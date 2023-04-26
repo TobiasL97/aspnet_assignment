@@ -1,4 +1,8 @@
 ﻿
+@{
+    var users = await userService.GetAllUsers();
+}
+
 <section class="admin-controls">
     <div class="container">
         <div class="user-list">
@@ -6,7 +10,36 @@
                 <a  asp-controller="User" asp-action="createuser">Create User</a>
             </div>
             <div class="list">
-                <p> HEJ PÅ DIG</p>
+                @foreach(var user in users)
+                {
+                    <div class="list-item">
+                        <div>
+                            <label class="list-item-label me-1">Name: </label>
+                            <p class="me-2">@user.FirstName</p>
+                            <p>@user.LastName</p>
+                        </div>
+                        <div class="list-item-email">
+                            <label class="list-item-label me-1">Email:</label>
+                            <p>@user.Email</p>
+                        </div>
+                        @foreach(var role in user.Roles)
+                        {
+                            <div>
+                                <label class="list-item-label me-1">Role:</label>
+                                <p>@role</p>
+                            </div>
+                        }
+
+                        <div class="list-item-icons">
+                            <button><i class="fa-solid fa-pencil"></i></button>
+                            <button><i class="fa-solid fa-trash-can ms-3"></i></button>
+                        </div>
+                    </div>
+
+                    
+
+
+                }
             </div>
         </div>
         <div class="product-list">
@@ -14,7 +47,7 @@
                 <a  asp-controller="Product" asp-action="CreateProduct">Create Product</a>
             </div>
             <div class="list">
-                <p>HEJ PÅ DIG</p>
+                <p></p>
             </div>
         </div>
     </div>

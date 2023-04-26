@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("IdentityDB")));
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("ProductDB")));
 builder.Services.AddScoped<AddressService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<AuthenticationService>();
 builder.Services.AddScoped<UserAddressRepository>();

@@ -1,8 +1,26 @@
-﻿<section class="create-product-section">
+﻿@model CreateProductViewModel
+
+<section class="create-product-section">
     <div class="container">
         <div class="create-product">
-            <form>
-
+            <form method="post" class="create-product-form">
+                <div class="mb-4">
+                    <label class="form-label" asp-for="Title"></label>
+                    <input class="form-control" asp-for="Title"/>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label" asp-for="Price"></label>
+                    <input class="form-control" asp-for="Price" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label" asp-for="Description"></label>
+                    <input class="form-control" asp-for="Description" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label" asp-for="ImageUrl"></label>
+                    <input class="form-control mb-3" asp-for="ImageUrl" />
+                </div>
+                <button class="create-product-btn" type="submit">CREATE PRODUCT</button>
             </form>
         </div>
     </div>

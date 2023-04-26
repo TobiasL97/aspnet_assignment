@@ -1,4 +1,16 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿const addButton = document.querySelector("#add-more-button");
+const imageDiv = document.querySelector("#image-div");
 
-// Write your JavaScript code.
+let inputCount = 0;
+
+addButton.addEventListener('click', () => {
+    inputCount++;
+
+    const newInput = document.createElement('input');
+    newInput.type = 'text';
+    newInput.name = `asp-for${inputCount}`
+    newInput.className = `mb-3 form-control`;
+
+    imageDiv.appendChild(newInput)
+})
+
