@@ -17,10 +17,24 @@ namespace aspnet_assignment.ViewModels
         [Display(Name = "Description")]
         public string? Description { get; set; }
 
+        [Display(Name = "Categories")]
+        public List<string> Categories { get; set; } = null!;
+
         [Required(ErrorMessage = "You must enter an imageurl")]
         [Display(Name = "ImageUrl*")]
         public string ImageUrl { get; set; } = null!;
 
-
+        public static implicit operator ProductEntity(CreateProductViewModel viewModel)
+        {
+            return new ProductEntity
+            {
+                Title = viewModel.Title,
+                Price = viewModel.Price,
+                Description = viewModel.Description!,
+                ProductImageUrl = viewModel.ImageUrl,
+            };
+        }
     }
+
+
 }

@@ -12,8 +12,8 @@ using aspnet_assignment.Contexts;
 namespace aspnet_assignment.Migrations.Data
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230425114234_Init Product Database")]
-    partial class InitProductDatabase
+    [Migration("20230427102916_Init Product DB")]
+    partial class InitProductDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,10 @@ namespace aspnet_assignment.Migrations.Data
                     b.Property<decimal>("Price")
                         .HasColumnType("Money");
 
+                    b.Property<string>("ProductImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("StockId")
                         .HasColumnType("uniqueidentifier");
 
@@ -80,29 +84,6 @@ namespace aspnet_assignment.Migrations.Data
                     b.HasIndex("StockId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("aspnet_assignment.Models.Entities.ProductImageEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductyId");
-
-                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("aspnet_assignment.Models.Entities.ReviewEntity", b =>
@@ -172,17 +153,6 @@ namespace aspnet_assignment.Migrations.Data
                     b.Navigation("Stock");
                 });
 
-            modelBuilder.Entity("aspnet_assignment.Models.Entities.ProductImageEntity", b =>
-                {
-                    b.HasOne("aspnet_assignment.Models.Entities.ProductEntity", "Producty")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Producty");
-                });
-
             modelBuilder.Entity("aspnet_assignment.Models.Entities.ReviewEntity", b =>
                 {
                     b.HasOne("aspnet_assignment.Models.Entities.ProductEntity", "Product")
@@ -202,8 +172,6 @@ namespace aspnet_assignment.Migrations.Data
             modelBuilder.Entity("aspnet_assignment.Models.Entities.ProductEntity", b =>
                 {
                     b.Navigation("Categories");
-
-                    b.Navigation("ProductImages");
 
                     b.Navigation("Reviews");
                 });

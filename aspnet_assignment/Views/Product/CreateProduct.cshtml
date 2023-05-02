@@ -1,5 +1,9 @@
 ﻿@model CreateProductViewModel
 
+@{
+    var categories = await categoryService.GetAllCategoriesAsync();
+}
+
 <section class="create-product-section">
     <div class="container">
         <div class="create-product">
@@ -15,6 +19,26 @@
                 <div class="mb-4">
                     <label class="form-label" asp-for="Description"></label>
                     <input class="form-control" asp-for="Description" />
+                </div>
+                <div class="mb-4">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Categories"></label>
+                        <select id="select-option" multiple class="me-4">
+                            @foreach (var category in categories)
+                            {
+                                <option  value="@category.CategoryName">@category.CategoryName</option>
+                            }
+
+                        </select>
+
+                        <button type="button" id="add-category-btn">Add Category</button>
+                        <button type="button" id="remove-category-btn">Remove Categories</button>
+
+                    </div>
+
+                    <div id="selected-categories">
+                        
+                    </div>
                 </div>
                 <div class="mb-4">
                     <label class="form-label" asp-for="ImageUrl"></label>

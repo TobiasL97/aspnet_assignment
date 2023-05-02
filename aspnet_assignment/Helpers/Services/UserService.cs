@@ -29,7 +29,7 @@ namespace aspnet_assignment.Helpers.Services
             return result;
         }
 
-        public async Task<IEnumerable<AdminIndexViewModel>> GetAllUsers()
+        public async Task<IEnumerable<AdminIndexViewModel>> GetAllUserRolesAsync()
         {
             var userList = new List<AdminIndexViewModel>();
             var users = await _userManager.Users.ToListAsync();

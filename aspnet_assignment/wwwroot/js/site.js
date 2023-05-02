@@ -1,16 +1,26 @@
-﻿const addButton = document.querySelector("#add-more-button");
-const imageDiv = document.querySelector("#image-div");
+﻿const selectedOption = document.querySelector('#select-option');
+const addCategoryBtn = document.querySelector('#add-category-btn');
+const selectedCategories = document.querySelector('#selected-categories');
+const removeCategory = document.querySelector('#remove-category-btn');
 
-let inputCount = 0;
 
-addButton.addEventListener('click', () => {
-    inputCount++;
+addCategoryBtn.addEventListener('click', () => {
 
-    const newInput = document.createElement('input');
-    newInput.type = 'text';
-    newInput.name = `asp-for${inputCount}`
-    newInput.className = `mb-3 form-control`;
+    const el = document.createElement('span');
+    const value = selectedOption.value;
 
-    imageDiv.appendChild(newInput)
-})
+    el.innerHTML = `<span  id="selected-category" class="me-3">${value}</span>`;
+
+    selectedCategories.appendChild(el);
+
+});
+
+
+removeCategory.addEventListener('click', () => {
+
+    const el = document.querySelector('#selected-category')
+
+    selectedCategories.remove(el);
+});
+
 

@@ -1,6 +1,7 @@
 ﻿
 @{
-    var users = await userService.GetAllUsers();
+    var users = await userService.GetAllUserRolesAsync();
+    var products = await productService.GetAllProductsAsync();
 }
 
 <section class="admin-controls">
@@ -47,7 +48,31 @@
                 <a  asp-controller="Product" asp-action="CreateProduct">Create Product</a>
             </div>
             <div class="list">
-                <p></p>
+                @foreach(var product in products)
+                {
+                    <div class="list-item">
+                        
+                        <div>
+                            <img class="list-item-image me-4" src="@product.ProductImageUrl" />
+                            <label class="list-item-label me-2">Title: </label>
+                            <p class="me-2">@product.Title</p>
+                        </div>
+                        <div class="list-item-email">
+                            <label class="list-item-label me-2">Price:</label>
+                            <p>@product.Price</p>
+                            <span class="ms-2">Kr</span>
+                        </div>
+                        <div>
+                            <label class="list-item-label me-2">Stock:</label>
+                            <p>@product.Stock.Stock</p>
+                        </div>
+
+                        <div class="list-item-icons">
+                            <button><i class="fa-solid fa-pencil"></i></button>
+                            <button><i class="fa-solid fa-trash-can ms-3"></i></button>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>

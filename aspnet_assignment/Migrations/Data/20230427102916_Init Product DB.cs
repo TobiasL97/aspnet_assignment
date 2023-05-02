@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace aspnet_assignment.Migrations.Data
 {
     /// <inheritdoc />
-    public partial class InitProductDatabase : Migration
+    public partial class InitProductDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,6 +43,7 @@ namespace aspnet_assignment.Migrations.Data
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "Money", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StockId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -81,26 +82,6 @@ namespace aspnet_assignment.Migrations.Data
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductImages",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductImages", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductImages_Products_ProductyId",
-                        column: x => x.ProductyId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ReviewEntity",
                 columns: table => new
                 {
@@ -126,11 +107,6 @@ namespace aspnet_assignment.Migrations.Data
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductImages_ProductyId",
-                table: "ProductImages",
-                column: "ProductyId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Products_StockId",
                 table: "Products",
                 column: "StockId");
@@ -146,9 +122,6 @@ namespace aspnet_assignment.Migrations.Data
         {
             migrationBuilder.DropTable(
                 name: "ProductCategories");
-
-            migrationBuilder.DropTable(
-                name: "ProductImages");
 
             migrationBuilder.DropTable(
                 name: "ReviewEntity");

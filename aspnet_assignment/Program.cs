@@ -13,6 +13,9 @@ builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Confi
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("ProductDB")));
 builder.Services.AddScoped<AddressService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<StockService>();
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<AuthenticationService>();
 builder.Services.AddScoped<UserAddressRepository>();
@@ -53,4 +56,18 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-    app.Run();
+using (var scope = app.Services.CreateScope())
+{
+    var stockService = scope.ServiceProvider.GetRequiredService<StockService>();
+
+    await stockService.PopulateStockAsync();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var categoryService = scope.ServiceProvider.GetRequiredService<CategoryService>();
+
+    await categoryService.PopulateCategoriesAsync();
+}
+
+app.Run();
