@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using aspnet_assignment.ViewModels;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 
 namespace aspnet_assignment.Models.Entities
@@ -13,13 +14,24 @@ namespace aspnet_assignment.Models.Entities
         public decimal Price { get; set; }
 
         public string Description { get; set; } = null!;
-        public string ProductImageUrl { get; set; } = null!;
         public Guid StockId { get; set; }
+
+        public ICollection<ImageEntity> Images { get; set; } = new List<ImageEntity>();
 
         public ICollection<ReviewEntity> Reviews { get; set; } = new List<ReviewEntity>();
 
         public ICollection<ProductCategoryEntity> Categories { get; set; } = new List<ProductCategoryEntity>();
 
         public StockEntity Stock { get; set; } = null!;
+
+        public static implicit operator GridItemViewModel(ProductEntity entity)
+        {
+            return new GridItemViewModel
+            {
+                Id = entity.Id,
+                Title = entity.Title,
+                Price = entity.Price,
+            };
+        }
     }
 }

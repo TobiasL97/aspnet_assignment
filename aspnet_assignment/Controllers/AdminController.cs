@@ -13,7 +13,7 @@ namespace aspnet_assignment.Controllers
     {
 
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
 
 

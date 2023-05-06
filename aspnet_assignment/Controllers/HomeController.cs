@@ -1,12 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using aspnet_assignment.Helpers.Services;
+using aspnet_assignment.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace aspnet_assignment.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var viewModel = new HomeIndexViewModel
+            {
+                BestCollection = new BestCollectionViewModel
+                {
+                    Title = "Best Collection",
+                },
+            };
+
+            return View(viewModel);
         }
     }
 }

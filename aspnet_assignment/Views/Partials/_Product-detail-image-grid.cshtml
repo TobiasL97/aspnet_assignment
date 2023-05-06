@@ -1,7 +1,9 @@
-﻿<div class="product-detail-image-grid">
-    <img class="product-image-1" src="~/images/501x430.svg" />
-    <img class="small-product-image" src="~/images/120x113.svg" />
-    <img class="small-product-image" src="~/images/120x113.svg" />
-    <img class="small-product-image" src="~/images/120x113.svg" />
-    <img class="small-product-image" src="~/images/120x113.svg" />
+﻿@model ProductDetailImageGridViewModel
+
+<div class="product-detail-image-grid">
+    <img class="product-image-1" src="~/@Model.ProductImageUrl" />
+    <img class="small-product-image" src="~/@Model.ProductImageUrl" />
+    <img class="small-product-image" src="~/@Model.ProductImageUrl" />
+    <img class="small-product-image" src="~/@Model.ProductImageUrl" />
+    <img class="small-product-image" src="~/@Model.ProductImageUrl" />
 </div>

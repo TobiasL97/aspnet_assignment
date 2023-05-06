@@ -32,6 +32,7 @@ namespace aspnet_assignment.Helpers.Services
             await _context.SaveChangesAsync();
         }
 
+
         public async Task<List<CategoryEntity>> GetAllCategoriesAsync()
         {
             return await _context.Categories.ToListAsync();

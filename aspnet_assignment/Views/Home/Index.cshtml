@@ -1,7 +1,7 @@
-﻿@{ ViewData["Title"] = "Home";}
+﻿@model HomeIndexViewModel
 
 <partial name="/Views/Partials/_Showcase.cshtml" />
-<partial name="/Views/Partials/_Grid-collection.cshtml" />
+<partial name="/Views/Partials/_Grid-collection.cshtml" model="@Model.BestCollection"/>
 <partial name="/Views/Partials/_Up-to-sell-grid.cshtml" />
 
 <partial name="/Views/Partials/_Top-selling-grid.cshtml" />

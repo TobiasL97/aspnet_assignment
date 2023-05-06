@@ -1,8 +1,10 @@
-﻿<section class="product-details">
+﻿@model ProductDetailViewModel
+
+<section class="product-details">
     <div class="container">
-        <partial name="/Views/Partials/_Product-detail-image-grid.cshtml" />
+        <partial name="/Views/Partials/_Product-detail-image-grid.cshtml" model="@Model.ImageGrid"/>
         <div class="product-detail-info">
-            <h1 class="product-detail-header">Young Star Smart Shoe in Fashion</h1>
+            <h1 class="product-detail-header">@Model.Title</h1>
             <p class="procuct-detail-description">Lirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             <div class="product-detail-rating">
                 <div class="rating-stars">
@@ -12,9 +14,9 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </div>
-                <p class="rating-reviews">16 Reviews</p>
+                <p class="rating-reviews">@Model.Reviews.Count Reviews</p>
             </div>
-            <p class="product-detail-price">$30.00</p>
+            <p class="product-detail-price">$@Model.Price</p>
             <div class="add-to-cart">
                 <div class="product-detail-count">
                     <button class="subtract">-</button>
@@ -34,7 +36,14 @@
             <button class="wishlist-btn">Add to wishlist</button>
             <div class="product-category">
                 <p class="category">Category: </p>
-                <p class="category-tags">Table Lamp, Light</p>
+                @foreach(var category in Model.Categories)
+                {
+                    @if(category != null)
+                    {
+                        <p class="category-tags me-2">@category.Category.CategoryName</p>
+                    }
+                }
+                
             </div>
         </div>
     </div>

@@ -1356,9 +1356,7 @@ footer .container {
 }
 .admin-controls > .container .list .list-item > div > p {
   margin-bottom: 0px;
-}
-.admin-controls > .container .list .list-item > p {
-  margin-bottom: 0px;
+  font-size: 12px;
 }
 .admin-controls > .container .list .list-item .list-item-image {
   width: 70px;
@@ -1367,6 +1365,7 @@ footer .container {
 }
 .admin-controls > .container .list .list-item .list-item-label {
   font-weight: 600;
+  font-size: 12px;
 }
 .admin-controls > .container .list .list-item .list-item-icons > button {
   background-color: transparent;

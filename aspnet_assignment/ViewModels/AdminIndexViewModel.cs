@@ -11,7 +11,7 @@ namespace aspnet_assignment.ViewModels
 
         public string? Title { get; set;}
         public decimal? Price { get; set;}
-        public string? ImageUrl { get; set;}
+        public List<ImageEntity> Images { get; set;} = new List<ImageEntity>();
 
         
 
@@ -34,7 +34,6 @@ namespace aspnet_assignment.ViewModels
             {
                 Title = product.Title,
                 Price = product.Price,
-                ImageUrl = product.ProductImageUrl
             };
         }
     }

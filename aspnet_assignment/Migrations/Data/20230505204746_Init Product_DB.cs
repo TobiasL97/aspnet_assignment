@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace aspnet_assignment.Migrations.Data
 {
     /// <inheritdoc />
-    public partial class InitProductDB : Migration
+    public partial class InitProduct_DB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,7 +43,6 @@ namespace aspnet_assignment.Migrations.Data
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "Money", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StockId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -53,6 +52,25 @@ namespace aspnet_assignment.Migrations.Data
                         name: "FK_Products_Stocks_StockId",
                         column: x => x.StockId,
                         principalTable: "Stocks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ImageEntity",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ImageEntity", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ImageEntity_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -102,6 +120,11 @@ namespace aspnet_assignment.Migrations.Data
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ImageEntity_ProductId",
+                table: "ImageEntity",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProductCategories_CategoryId",
                 table: "ProductCategories",
                 column: "CategoryId");
@@ -120,6 +143,9 @@ namespace aspnet_assignment.Migrations.Data
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ImageEntity");
+
             migrationBuilder.DropTable(
                 name: "ProductCategories");
 

@@ -7,7 +7,7 @@
 <section class="create-product-section">
     <div class="container">
         <div class="create-product">
-            <form method="post" class="create-product-form">
+            <form method="post" enctype="multipart/form-data" class="create-product-form">
                 <div class="mb-4">
                     <label class="form-label" asp-for="Title"></label>
                     <input class="form-control" asp-for="Title"/>
@@ -23,16 +23,16 @@
                 <div class="mb-4">
                     <div class="mb-3">
                         <label class="form-label" asp-for="Categories"></label>
-                        <select id="select-option" multiple class="me-4">
+                        <select id="select-option" asp-for="Categories" multiple class="me-4">
                             @foreach (var category in categories)
                             {
-                                <option  value="@category.CategoryName">@category.CategoryName</option>
+                                <option  value="@category.Id">@category.CategoryName</option>
                             }
 
                         </select>
 
-                        <button type="button" id="add-category-btn">Add Category</button>
-                        <button type="button" id="remove-category-btn">Remove Categories</button>
+@*                        <button type="button" id="add-category-btn">Add Category</button>
+                        <button type="button" id="remove-category-btn">Remove Categories</button>*@
 
                     </div>
 
@@ -41,8 +41,8 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label class="form-label" asp-for="ImageUrl"></label>
-                    <input class="form-control mb-3" asp-for="ImageUrl" />
+                    <label class="form-label" asp-for="Images"></label>
+                    <input class="form-control mb-3" asp-for="Images" multiple />
                 </div>
                 <button class="create-product-btn" type="submit">CREATE PRODUCT</button>
             </form>

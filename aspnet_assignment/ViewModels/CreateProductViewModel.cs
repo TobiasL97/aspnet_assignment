@@ -18,11 +18,12 @@ namespace aspnet_assignment.ViewModels
         public string? Description { get; set; }
 
         [Display(Name = "Categories")]
-        public List<string> Categories { get; set; } = null!;
+        public List<Guid> Categories { get; set; } = new List<Guid>();
 
         [Required(ErrorMessage = "You must enter an imageurl")]
         [Display(Name = "ImageUrl*")]
-        public string ImageUrl { get; set; } = null!;
+        [DataType(DataType.Upload)]
+        public List<IFormFile> Images { get; set; } = new List<IFormFile>();
 
         public static implicit operator ProductEntity(CreateProductViewModel viewModel)
         {
@@ -30,8 +31,7 @@ namespace aspnet_assignment.ViewModels
             {
                 Title = viewModel.Title,
                 Price = viewModel.Price,
-                Description = viewModel.Description!,
-                ProductImageUrl = viewModel.ImageUrl,
+                Description = viewModel.Description!
             };
         }
     }

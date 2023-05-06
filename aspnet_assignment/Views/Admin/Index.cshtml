@@ -36,6 +36,7 @@
                             <button><i class="fa-solid fa-trash-can ms-3"></i></button>
                         </div>
                     </div>
+                    
 
                     
 
@@ -53,24 +54,42 @@
                     <div class="list-item">
                         
                         <div>
-                            <img class="list-item-image me-4" src="@product.ProductImageUrl" />
+                            @if(product != null)
+                            {
+                                @foreach(var image in product.Images)
+                                {
+                                    @if(image != null)
+                                    {
+                                        <img class="list-item-image me-2" src="@image.ImageUrl" />
+                                    }
+                                }
+                            }
                             <label class="list-item-label me-2">Title: </label>
-                            <p class="me-2">@product.Title</p>
+                            <p>@product.Title</p>
                         </div>
-                        <div class="list-item-email">
+                        <div>
                             <label class="list-item-label me-2">Price:</label>
                             <p>@product.Price</p>
                             <span class="ms-2">Kr</span>
                         </div>
                         <div>
-                            <label class="list-item-label me-2">Stock:</label>
-                            <p>@product.Stock.Stock</p>
+                            <label class="list-item-label me-2">Categories:</label>
+                        @foreach (var item in product.Categories)
+                        {
+                            
+                            @if (item != null)
+                            {
+                                <p class="me-2">@item.Category.CategoryName</p>
+                            }
+                            
+                        }
                         </div>
 
                         <div class="list-item-icons">
                             <button><i class="fa-solid fa-pencil"></i></button>
                             <button><i class="fa-solid fa-trash-can ms-3"></i></button>
                         </div>
+
                     </div>
                 }
             </div>
