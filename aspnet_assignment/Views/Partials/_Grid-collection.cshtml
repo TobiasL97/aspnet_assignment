@@ -24,7 +24,11 @@
                         <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@Item?.Id" class="grid-item">
                             @foreach(var image in Item.Images.Take(1))
                             {
-                                <img src="@image.ImageUrl" alt="Product Image">
+                                if(image != null)
+                                {
+                                    <img src="~/images/products/blue-shirt.jpg" alt="Product Image">
+                                }
+                                
                             }
                             
                             <div class="body">

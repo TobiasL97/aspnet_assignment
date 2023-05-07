@@ -6,6 +6,8 @@ namespace aspnet_assignment.ViewModels
 {
     public class CreateProductViewModel
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
+
         [Required(ErrorMessage = "You must enter the title of the product")]
         [Display(Name = "Title*")]
         public string Title { get; set; } = null!;
@@ -29,9 +31,11 @@ namespace aspnet_assignment.ViewModels
         {
             return new ProductEntity
             {
+                Id = viewModel.Id,
                 Title = viewModel.Title,
                 Price = viewModel.Price,
-                Description = viewModel.Description!
+                Description = viewModel.Description!,
+
             };
         }
     }

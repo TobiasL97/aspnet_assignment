@@ -33,5 +33,7 @@ namespace aspnet_assignment.Models.Entities
                 Price = entity.Price,
             };
         }
+
+
     }
 }

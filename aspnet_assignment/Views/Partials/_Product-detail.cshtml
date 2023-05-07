@@ -2,7 +2,15 @@
 
 <section class="product-details">
     <div class="container">
-        <partial name="/Views/Partials/_Product-detail-image-grid.cshtml" model="@Model.ImageGrid"/>
+        
+        <div class="product-detail-image-grid">
+            @foreach(var image in Model.Images)
+            {
+                <img class="small-product-image" src="~/images/products/@image.ImageUrl" />
+            }
+
+        </div>
+        
         <div class="product-detail-info">
             <h1 class="product-detail-header">@Model.Title</h1>
             <p class="procuct-detail-description">Lirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>

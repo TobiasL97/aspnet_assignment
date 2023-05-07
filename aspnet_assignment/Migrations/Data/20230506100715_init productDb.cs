@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace aspnet_assignment.Migrations.Data
 {
     /// <inheritdoc />
-    public partial class InitProduct_DB : Migration
+    public partial class initproductDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,7 +57,7 @@ namespace aspnet_assignment.Migrations.Data
                 });
 
             migrationBuilder.CreateTable(
-                name: "ImageEntity",
+                name: "Images",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -66,9 +66,9 @@ namespace aspnet_assignment.Migrations.Data
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ImageEntity", x => x.Id);
+                    table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ImageEntity_Products_ProductId",
+                        name: "FK_Images_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -120,8 +120,8 @@ namespace aspnet_assignment.Migrations.Data
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ImageEntity_ProductId",
-                table: "ImageEntity",
+                name: "IX_Images_ProductId",
+                table: "Images",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -144,7 +144,7 @@ namespace aspnet_assignment.Migrations.Data
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ImageEntity");
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "ProductCategories");

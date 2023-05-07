@@ -10,10 +10,12 @@ namespace aspnet_assignment.Controllers
     public class ProductController : Controller
     {
         private readonly ProductService _productService;
+        private readonly ImageService _imageService;
 
-        public ProductController(ProductService productService)
+        public ProductController(ProductService productService, ImageService imageService)
         {
             _productService = productService;
+            _imageService = imageService;
         }
 
         public IActionResult Index()
@@ -33,10 +35,7 @@ namespace aspnet_assignment.Controllers
                     Price = product.Price,
                     Categories = product.Categories,
                     Reviews = product.Reviews,
-                    ImageGrid = new ProductDetailImageGridViewModel
-                    {
-                        
-                    }
+                    Images = product.Images
                 },
 
                 ProductDetailInfo = new ProductDetailInfoViewModel
@@ -62,7 +61,7 @@ namespace aspnet_assignment.Controllers
             if(ModelState.IsValid)
             {
                 await _productService.CreateProductAsync(viewModel);
-                //await _productService.UploadImageAsync(viewModel.Images);
+                await _productService.UploadImageAsync(viewModel.Images);
 
                 return RedirectToAction("Index", "Admin");
             }

@@ -4,6 +4,6 @@
     {
         public string Description { get; set; } = null!;
 
-        public string ProductImageUrl { get; set; } = null!;
+        public string ImageUrl { get; set; } = null!;
     }
 }

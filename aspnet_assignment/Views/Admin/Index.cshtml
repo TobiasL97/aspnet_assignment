@@ -56,25 +56,25 @@
                         <div>
                             @if(product != null)
                             {
-                                @foreach(var image in product.Images)
+                                @foreach(var image in product.Images.Take(1))
                                 {
                                     @if(image != null)
                                     {
-                                        <img class="list-item-image me-2" src="@image.ImageUrl" />
+                                        <img class="list-item-image me-2" src="/images/products/@image.ImageUrl" />
                                     }
                                 }
                             }
                             <label class="list-item-label me-2">Title: </label>
-                            <p>@product.Title</p>
+                            <p>@product?.Title</p>
                         </div>
                         <div>
                             <label class="list-item-label me-2">Price:</label>
-                            <p>@product.Price</p>
+                            <p>@product?.Price</p>
                             <span class="ms-2">Kr</span>
                         </div>
                         <div>
                             <label class="list-item-label me-2">Categories:</label>
-                        @foreach (var item in product.Categories)
+                        @foreach (var item in product?.Categories)
                         {
                             
                             @if (item != null)

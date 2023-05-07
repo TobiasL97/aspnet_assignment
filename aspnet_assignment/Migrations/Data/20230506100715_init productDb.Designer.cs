@@ -12,8 +12,8 @@ using aspnet_assignment.Contexts;
 namespace aspnet_assignment.Migrations.Data
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230505204746_Init Product_DB")]
-    partial class InitProduct_DB
+    [Migration("20230506100715_init productDb")]
+    partial class initproductDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,7 @@ namespace aspnet_assignment.Migrations.Data
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ImageEntity");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("aspnet_assignment.Models.Entities.ProductCategoryEntity", b =>

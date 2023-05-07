@@ -13,5 +13,6 @@ namespace aspnet_assignment.Contexts
         public DbSet<CategoryEntity> Categories { get; set; } = null!;
         public DbSet<StockEntity> Stocks { get; set; } = null!;
         public DbSet<ProductCategoryEntity> ProductCategories { get; set; } = null!;
+        public DbSet<ImageEntity> Images { get; set; } = null!;
     }
 }

@@ -54,7 +54,7 @@ namespace aspnet_assignment.Migrations.Data
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ImageEntity");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("aspnet_assignment.Models.Entities.ProductCategoryEntity", b =>
