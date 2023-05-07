@@ -40,8 +40,9 @@ namespace aspnet_assignment.Controllers
 
                 ProductDetailInfo = new ProductDetailInfoViewModel
                 {
+                    Title = product.Title,
                     Description = product.Description,
-                    
+                    Images = product.Images,
                 }
 
             };

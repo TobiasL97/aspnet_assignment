@@ -17,7 +17,7 @@
 
             </ul>
             <div class="grid">
-                @foreach(var Item in gridItems)
+                @foreach(var Item in gridItems.Take(8))
                 {
                     @if(Item != null)
                     {
@@ -26,7 +26,7 @@
                             {
                                 if(image != null)
                                 {
-                                    <img src="~/images/products/blue-shirt.jpg" alt="Product Image">
+                                    <img src="~/images/products/@image.ImageUrl" alt="Product Image">
                                 }
                                 
                             }

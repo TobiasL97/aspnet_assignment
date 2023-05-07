@@ -13,6 +13,7 @@
             justify-content: center;
             gap: 5px;
             flex: 1;
+            margin-bottom: 20px;
 
             > img {
                 width: 100%;
@@ -42,9 +43,10 @@
 
             .product-detail-header {
                 font-family: $font-poppins;
-                font-size: 18px;
+                font-size: 20px;
                 font-weight: $font-weight-semibold;
                 color: $color-dark-2;
+                margin-bottom: 15px;
 
                 @include md {
                     margin-bottom: 5px;
@@ -60,8 +62,9 @@
                 font-family: $font-roboto;
                 font-size: 14px;
                 color: $color-dark-3;
-                padding-bottom: 5px;
+                padding-bottom: 20px;
                 border-bottom: 1px solid $color-dark-5;
+                margin-bottom: 20px;
 
                 @include md {
                     margin-bottom: 10px;
@@ -71,7 +74,6 @@
                 @include lg {
                     display: block;
                     font-size: 16px;
-                    padding-bottom: 30px;
                     margin-bottom: 20px;
                 }
             }
@@ -102,6 +104,7 @@
                 font-size: 18px;
                 font-weight: $font-weight-semibold;
                 color: $color-dark-2;
+                margin-bottom: 20px;
 
                 @include lg {
                     font-size: 24px;

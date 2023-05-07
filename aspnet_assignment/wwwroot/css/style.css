@@ -1010,6 +1010,7 @@ footer .container {
   justify-content: center;
   gap: 5px;
   flex: 1;
+  margin-bottom: 20px;
 }
 .product-details > .container .product-detail-image-grid > img {
   width: 100%;
@@ -1039,9 +1040,10 @@ footer .container {
 }
 .product-details > .container .product-detail-info .product-detail-header {
   font-family: "Poppins", sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: #292929;
+  margin-bottom: 15px;
 }
 @media (min-width: 768px) {
   .product-details > .container .product-detail-info .product-detail-header {
@@ -1058,8 +1060,9 @@ footer .container {
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   color: #636363;
-  padding-bottom: 5px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #E1E1E1;
+  margin-bottom: 20px;
 }
 @media (min-width: 768px) {
   .product-details > .container .product-detail-info .procuct-detail-description {
@@ -1071,7 +1074,6 @@ footer .container {
   .product-details > .container .product-detail-info .procuct-detail-description {
     display: block;
     font-size: 16px;
-    padding-bottom: 30px;
     margin-bottom: 20px;
   }
 }
@@ -1099,6 +1101,7 @@ footer .container {
   font-size: 18px;
   font-weight: 600;
   color: #292929;
+  margin-bottom: 20px;
 }
 @media (min-width: 992px) {
   .product-details > .container .product-detail-info .product-detail-price {
@@ -1273,6 +1276,7 @@ footer .container {
   border-bottom: 1px solid #E1E1E1;
   padding-bottom: 50px;
   margin-bottom: 60px;
+  justify-content: space-between;
 }
 .product-info-content > .container .description .description-text .description-paragraph {
   margin: 0px 0px 30px 0px;
@@ -1285,6 +1289,7 @@ footer .container {
 }
 .product-info-content > .container .description .description-image {
   display: none;
+  justify-content: end;
   margin-left: 30px;
 }
 @media (min-width: 992px) {

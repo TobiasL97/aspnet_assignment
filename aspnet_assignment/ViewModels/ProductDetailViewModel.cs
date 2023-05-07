@@ -18,18 +18,5 @@ namespace aspnet_assignment.ViewModels
 
         public ICollection<ImageEntity> Images { get; set; } = new List<ImageEntity>();
 
-        public static implicit operator ProductDetailViewModel(ProductEntity entity)
-        {
-            var product = new ProductDetailViewModel
-            {
-                Title = entity.Title,
-                Price = entity.Price,
-                Description = entity.Description,
-                Categories = entity.Categories,
-                Reviews = entity.Reviews,
-                Images = entity.Images,
-            };
-            return product;
-        }
     }
 }

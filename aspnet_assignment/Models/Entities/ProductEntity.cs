@@ -24,16 +24,5 @@ namespace aspnet_assignment.Models.Entities
 
         public StockEntity Stock { get; set; } = null!;
 
-        public static implicit operator GridItemViewModel(ProductEntity entity)
-        {
-            return new GridItemViewModel
-            {
-                Id = entity.Id,
-                Title = entity.Title,
-                Price = entity.Price,
-            };
-        }
-
-
     }
 }
