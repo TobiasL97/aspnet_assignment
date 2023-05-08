@@ -3,7 +3,30 @@
 <partial name="/Views/Partials/_Product-image-banner.cshtml" />
 <partial name="/Views/Partials/_Product-detail.cshtml" model="@Model.ProductDetail"/>
 <partial name="/Views/Partials/_Product-info.cshtml" model="@Model.ProductDetailInfo"/>
-<partial name="/Views/Partials/_Product-detail-product-grid.cshtml" />
+<section class="product-grid">
+    <div class="container">
+        <h2 class="grid-header">Related Products</h2>
+        <div class="grid-content">
+            @foreach (var product in Model.Products.Take(4))
+            {
+                <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id" class="grid-item">
+                    @foreach (var image in product.Images.Take(1))
+                    {
+                        <img src="~/images/products/@image.ImageUrl" alt="Product Image">
+                    }
+                    <div class="body">
+                        <div class="title">@product.Title</div>
+                        <div class="info">
+                            <div class="price">@product.Price</div>
+                            <i class="add-cart fa-regular fa-cart-plus"></i>
+                        </div>
+                    </div>
+                </a>
+
+            }
+        </div>
+    </div>
+</section>
 
 <section class="bottom-images">
     <div class="container">

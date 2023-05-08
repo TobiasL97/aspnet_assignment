@@ -69,5 +69,19 @@ namespace aspnet_assignment.Helpers.Services
             return await _context.Products.Include(x => x.Stock).Include(x => x.Categories).ThenInclude(x => x.Category).Include(x => x.Images).ToListAsync();
 
         }
+
+        public async Task<IEnumerable<ProductEntity>> GetAllRelatedProductsAsync(Guid id)
+        {
+            var selectedProduct = await _context.Products.Include(x => x.Categories).ThenInclude(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);
+
+            if (selectedProduct != null)
+            {
+                var categoryIds = selectedProduct.Categories.Select(pc => pc.CategoryId);
+                var relatedProducts = await _context.Products.Include(x => x.Images).Include(p => p.Categories).ThenInclude(pc => pc.Category).Where(p => p.Categories.Any(pc => categoryIds.Contains(pc.CategoryId))).Where(x => x.Id != id).ToListAsync();
+                return relatedProducts!;
+            }
+
+            else return null!;
+        }
     }
 }

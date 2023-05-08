@@ -1,15 +1,11 @@
 ﻿@model BestCollectionViewModel
-@{
-    var gridItems = await productService.GetAllProductsAsync();
-    var categories = await categoryService.GetAllCategoriesAsync();
-}
 @if(Model != null)
 {
     <section class="grid-collection">
         <div class="container">
             <h1 class="collection-title">@Model.Title</h1>
             <ul class="categories">
-                @foreach (var category in categories)
+                @foreach (var category in Model.Categories)
                 {
                     <li class="category-item">@category.CategoryName</li>
                 }
@@ -17,12 +13,12 @@
 
             </ul>
             <div class="grid">
-                @foreach(var Item in gridItems.Take(8))
+                @foreach(var product in Model.Products.Take(8))
                 {
-                    @if(Item != null)
+                    @if(product != null)
                     {
-                        <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@Item?.Id" class="grid-item">
-                            @foreach(var image in Item.Images.Take(1))
+                        <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product?.Id" class="grid-item">
+                            @foreach(var image in product.Images.Take(1))
                             {
                                 if(image != null)
                                 {
@@ -32,9 +28,9 @@
                             }
                             
                             <div class="body">
-                                <div class="title">@Item?.Title</div>
+                                <div class="title">@product?.Title</div>
                                 <div class="info">
-                                    <div class="price">$@Item?.Price</div>
+                                    <div class="price">$@product?.Price</div>
                                     <i class="add-cart fa-regular fa-cart-plus"></i>
                                 </div>
                             </div>

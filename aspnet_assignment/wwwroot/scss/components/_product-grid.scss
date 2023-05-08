@@ -5,15 +5,20 @@
     >.container {
 
         .grid-header {
+            text-align: center;
             font-size: 24px;
             color: $color-dark-2;
             margin-bottom: 30px;
+
+            @include lg {
+                text-align: start;
+            }
         }
 
         .grid-content {
 
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 270px));
             gap: 30px;
         }
     }

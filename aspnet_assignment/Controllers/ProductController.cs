@@ -43,7 +43,9 @@ namespace aspnet_assignment.Controllers
                     Title = product.Title,
                     Description = product.Description,
                     Images = product.Images,
-                }
+                },
+
+                Products = (List<ProductEntity>)await _productService.GetAllRelatedProductsAsync(entity.Id)
 
             };
             return View(viewModel);

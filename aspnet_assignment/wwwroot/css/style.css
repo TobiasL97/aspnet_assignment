@@ -1302,13 +1302,19 @@ footer .container {
   margin-bottom: 80px;
 }
 .product-grid > .container .grid-header {
+  text-align: center;
   font-size: 24px;
   color: #292929;
   margin-bottom: 30px;
 }
+@media (min-width: 992px) {
+  .product-grid > .container .grid-header {
+    text-align: start;
+  }
+}
 .product-grid > .container .grid-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 270px));
   gap: 30px;
 }
 
