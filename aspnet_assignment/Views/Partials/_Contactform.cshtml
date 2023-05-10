@@ -1,39 +1,41 @@
-﻿<section class="contact-form">
+﻿@model ContactFormViewModel
+
+<section class="contact-form">
     <div class="container">
         <div class="title">Write something</div>
 
-        <form novalidate>
+        <form method="post" novalidate>
             <div class="name form-group">
-                <label for="name">Your Name*</label>
-                <input id="name" type="text" class="invalid" required>
-                <span class="error">Your name is required</span>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" id="name" type="text" required>
+                <span asp-validation-for="Name" class="error"></span>
             </div>
             <div class="email form-group">
-                <label for="email">Your Email*</label>
-                <input id="email" type="text" class="invalid">
-                <span class="error">Your email is required</span>
+                <label asp-for="Email" for="email"></label>
+                <input asp-for="Email" id="email" type="text">
+                <span asp-validation-for="Email" class="error"></span>
             </div>
             <div class="phoneNumber form-group">
-                <label for="phone">Phone Number (optional)</label>
-                <input id="phone" type="text">
+                <label asp-for="PhoneNumber" for="phone">Phone Number (optional)</label>
+                <input asp-for="PhoneNumber" id="phone" type="text">
             </div>
             <div class="companyName form-group">
-                <label for="company">Company (optional)</label>
-                <input id="company" type="text">
+                <label asp-for="Company" for="company">Company (optional)</label>
+                <input asp-for="Company" id="company" type="text">
             </div>
             <div class="message form-group">
-                <label for="message">Message*</label>
-                <textarea id="message" class="invalid"></textarea>
-                <span class="error">Message is required</span>
+                <label asp-for="Message" for="message">Message*</label>
+                <textarea asp-for="Message" id="message"></textarea>
+                <span asp-validation-for="Message" class="error"></span>
             </div>
             <div class="terms form-checkbox-group">
                 <label class="custom-checkbox">
-                    Save my name, email in the this browser for the next time I comment.
-                    <input type="checkbox" checked="checked">
+                    <label asp-for="SaveInfo"></label>
+                    <input asp-for="SaveInfo" type="checkbox">
                     <span class="checkmark"></span>
                 </label>
             </div>
-            <button class="btn-theme">Submit</button>
+            <button type="submit" class="btn-theme">Submit</button>
         </form>
     </div>
 </section>

@@ -958,7 +958,6 @@ footer .container {
     width: 30%;
   }
 }
-
 .signin-section {
   padding-top: 100px;
   padding-bottom: 100px;
@@ -1364,13 +1363,16 @@ footer .container {
   margin-bottom: 20px;
   justify-content: space-between;
 }
+.admin-controls > .container .list .list-item .list-item-content .list-item-span {
+  font-size: 14px;
+}
 .admin-controls > .container .list .list-item > div {
   display: flex;
   align-items: center;
 }
 .admin-controls > .container .list .list-item > div > p {
   margin-bottom: 0px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .admin-controls > .container .list .list-item .list-item-image {
   width: 70px;
@@ -1379,7 +1381,7 @@ footer .container {
 }
 .admin-controls > .container .list .list-item .list-item-label {
   font-weight: 600;
-  font-size: 12px;
+  font-size: 14px;
 }
 .admin-controls > .container .list .list-item .list-item-icons > button {
   background-color: transparent;

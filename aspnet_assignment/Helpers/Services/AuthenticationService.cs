@@ -29,7 +29,6 @@ namespace aspnet_assignment.Helpers.Services
         {
             CustomUser user = viewModel;
 
-            
             if (!await _userManager.Users.AnyAsync())
             {
                 await _userManager.CreateAsync(user, viewModel.Password);
@@ -48,6 +47,30 @@ namespace aspnet_assignment.Helpers.Services
                 return true;
             }
             return false;
+        }
+
+        public async Task<bool> AdminCreateUserAsync(AdminCreateUserViewModel viewModel)
+        {
+
+            try
+			{
+				CustomUser customUser = viewModel;
+
+				await _userManager.CreateAsync(customUser, viewModel.Password);
+				await _userManager.AddToRoleAsync(customUser, viewModel.Role);
+
+				var address = await _addressService.GetOrCreateAddressAsync(viewModel);
+				if (address != null)
+				{
+					await _addressService.AddAddressAsync(customUser, address);
+					return true;
+				}
+
+				return true;
+			}
+
+            catch { return false; }
+
         }
 
         public async Task<bool> LoginAsync(SignInUserViewModel viewModel)

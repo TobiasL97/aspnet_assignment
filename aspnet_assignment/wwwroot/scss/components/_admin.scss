@@ -20,14 +20,22 @@
                 margin-bottom: 20px;
                 justify-content: space-between;
                 
+                .list-item-content {
+
+                    .list-item-span {
+
+                        font-size: 14px;
+                    }
+                }
 
                 >div {
                     display: flex;
                     align-items: center;
 
+
                     > p {
                         margin-bottom: 0px;
-                        font-size: 12px;
+                        font-size: 14px;
                     }
                 }
 
@@ -40,7 +48,7 @@
                 .list-item-label {
 
                     font-weight: $font-weight-semibold;
-                    font-size: 12px;
+                    font-size: 14px;
                 }
 
                 .list-item-icons {

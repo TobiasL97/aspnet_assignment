@@ -38,7 +38,6 @@ namespace aspnet_assignment.Controllers
             {
                 if(await _authService.CheckIfUserExistsAsync(x => x.Email == viewModel.Email))
                 {
-                    //Kollar om det finns en användare med samma E-mail
                     ModelState.AddModelError("", "A user with the same E-mail already exists"); 
                 }
 
@@ -82,7 +81,7 @@ namespace aspnet_assignment.Controllers
 
         #region SignOut
         [HttpGet]
-        public async Task<IActionResult> SignOut()
+        public new async Task<IActionResult> SignOut()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");

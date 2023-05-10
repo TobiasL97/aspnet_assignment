@@ -12,6 +12,9 @@ namespace aspnet_assignment.Helpers.Services
             _userManager = userManager;
         }
 
-        
+        public async Task GetAllRoles()
+        {
+            
+        }
     }
 }

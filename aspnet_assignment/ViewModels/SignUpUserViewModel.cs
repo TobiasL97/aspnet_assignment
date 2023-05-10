@@ -51,7 +51,7 @@ namespace aspnet_assignment.ViewModels
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; } = null!;
 
-        [Display(Name = "Upload Profile Image (Optional)")]
+		[Display(Name = "Upload Profile Image (Optional)")]
         public IFormFile? Image { get; set; }
 
         [Display(Name = "I have read and accepts the terms and agreements")]

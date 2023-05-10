@@ -8,7 +8,7 @@
     <div class="container">
         <div class="user-list">
             <div class="create-btn">
-                <a  asp-controller="User" asp-action="createuser">Create User</a>
+                <a  asp-controller="Admin" asp-action="CreateUser">Create User</a>
             </div>
             <div class="list">
                 @foreach(var user in users)
@@ -53,7 +53,7 @@
                 {
                     <div class="list-item">
                         
-                        <div>
+                        <div class="list-item-content">
                             @if(product != null)
                             {
                                 @foreach(var image in product.Images.Take(1))
@@ -63,28 +63,34 @@
                                         <img class="list-item-image me-2" src="/images/products/@image.ImageUrl" />
                                     }
                                 }
-                            }
-                            <label class="list-item-label me-2">Title: </label>
-                            <p>@product?.Title</p>
-                        </div>
-                        <div>
-                            <label class="list-item-label me-2">Price:</label>
-                            <p>@product?.Price</p>
-                            <span class="ms-2">Kr</span>
-                        </div>
-                        <div>
-                            <label class="list-item-label me-2">Categories:</label>
-                        @foreach (var item in product?.Categories)
-                        {
-                            
-                            @if (item != null)
-                            {
-                                <p class="me-2">@item.Category.CategoryName</p>
-                            }
-                            
-                        }
-                        </div>
 
+                                <div>
+                                    <div>
+                                        <label class="list-item-label me-1">Title: </label>
+                                        <span class="list-item-span me-2">@product?.Title</span>
+                                    </div>
+
+                                    <div>
+                                        <label class="list-item-label me-1">Price:</label>
+                                        <span class="list-item-span">@product?.Price KR</span>
+                                    </div>
+                                    <div>
+                                        <label class="list-item-label me-1">Categories:</label>
+                                        @foreach (var item in product.Categories)
+                                        {
+
+                                            @if (item != null)
+                                            {
+                                                <span class="list-item-span me-2">@item.Category.CategoryName</span>
+                                            }
+
+                                        }
+                                    </div>
+                                </div>
+                            }
+
+
+                        </div>
                         <div class="list-item-icons">
                             <button><i class="fa-solid fa-pencil"></i></button>
                             <button><i class="fa-solid fa-trash-can ms-3"></i></button>
