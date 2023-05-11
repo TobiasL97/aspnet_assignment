@@ -1,6 +1,6 @@
-﻿
+﻿@model AdminEditUserViewModel
 @{
-	ViewData["Title"] = "Create Account";
+	ViewData["Title"] = "Edit User";
 
 	var roles = roleManager.Roles.ToList();
 }
@@ -9,50 +9,51 @@
 	<div class="container">
 		<div class="signup">
 			<div asp-validation-summary="ModelOnly"></div>
-			<form method="post" enctype="multipart/form-data" class="signup-form">
+			<form method="post" class="signup-form">
 				<div>
 					<label  class="form-label">First Name</label>
-					<input  class="form-control" value="@Model.FirstName"/>
+					<input asp-for="FirstName" class="form-control" value="@Model.FirstName"/>
 					<small class="text-danger"></small>
 				</div>
 				<div>
 					<label  class="form-label">Last Name*</label>
-					<input  class="form-control" value="@Model.LastName"/>
+					<input asp-for="LastName" class="form-control" value="@Model.LastName"/>
 					<small class="text-danger"></small>
 				</div>
 				<div class="form-long">
 					<label class="form-label">Street Name*</label>
-					<input  class="form-control" value="@Model.StreetName"/>
+					<input asp-for="StreetName" class="form-control" value="@Model.StreetName"/>
 					<small class="text-danger"></small>
 				</div>
 				<div>
 					<label class="form-label">Postal Code*</label>
-					<input  class="form-control" value="@Model.PostalCode"/>
+					<input asp-for="PostalCode" class="form-control" value="@Model.PostalCode"/>
 					<small class="text-danger"></small>
 				</div>
 				<div>
 					<label class="form-label">City*</label>
-					<input class="form-control" value="@Model.City"/>
+					<input asp-for="City" class="form-control" value="@Model.City"/>
 					<small class="text-danger"></small>
 				</div>
 				<div>
 					<label  class="form-label">Mobile (Optional)</label>
-					<input  class="form-control" value="@Model.Mobile"/>
+					<input asp-for="Mobile" class="form-control" value="@Model.Mobile"/>
 				</div>
 				<div>
 					<label  class="form-label">Company (Optional)</label>
-					<input  class="form-control" value="@Model.CompanyName"/>
+					<input asp-for="CompanyName" class="form-control" value="@Model.CompanyName"/>
 				</div>
 				<div class="form-long">
 					<label  class="form-label">E-mail*</label>
-					<input  class="form-control" value="@Model.Email"/>
+					<input asp-for="Email" class="form-control" value="@Model.Email"/>
 					<small class="text-danger"></small>
 				</div>
 				@if (User.IsInRole("Admin"))
 				{
 					<div class="role-select">
 						<label class="form-label">Role</label>
-						<select class="form-control" >
+						<select class="form-control" asp-for="@Model.Role">
+							<option disabled selected value="">Select Role</option>
 							@foreach (var role in roles)
 							{
 								<option value="@role.Name">@role.Name</option>
@@ -61,7 +62,7 @@
 						</select>
 					</div>
 				}
-				<button class="btn-theme" type="submit">SUBMIT</button>
+				<button class="btn-theme" type="submit">Update User</button>
 			</form>
 
 		</div>

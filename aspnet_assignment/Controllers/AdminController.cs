@@ -18,6 +18,7 @@ namespace aspnet_assignment.Controllers
 		private readonly UserAddressRepository _userAddressRepository;
 		private readonly AddressService _addressService;
 		private readonly IdentityContext _context;
+		private readonly SignInManager<CustomUser> _signInManager;
 
 		public AdminController(AuthenticationService authService, UserService userService, UserAddressRepository userAddressRepository, IdentityContext context)
 		{
@@ -61,13 +62,11 @@ namespace aspnet_assignment.Controllers
 		}
 
 
-
+		[Authorize(Roles = "Admin")]
 		[HttpGet]
 		public async Task<IActionResult> EditUser(string Id)
 		{
 			var user = await _userService.GetUserAddressAsync(Id);
-			//var user = await _userService
-			//var address = await _addressService.GetUserAddressAsync(Id);
 
 			var userViewModel = new AdminEditUserViewModel
 			{
@@ -76,9 +75,6 @@ namespace aspnet_assignment.Controllers
 				Mobile = user.PhoneNumber,
 				Email = user.Email!,
 				CompanyName = user.CompanyName,
-
-
-				
 			};
 			foreach(var address in user.Addresses)
 			{
@@ -91,6 +87,23 @@ namespace aspnet_assignment.Controllers
 			}
 
 			return View(userViewModel);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> EditUser(AdminEditUserViewModel viewModel)
+		{
+			if(ModelState.IsValid)
+			{
+				await _userService.UpdateUserAsync(viewModel);
+				await _signInManager.RefreshSignInAsync(viewModel);
+
+				return RedirectToAction("index", "Home");
+
+
+
+			}
+
+			return View(viewModel);
 		}
 	}
 }

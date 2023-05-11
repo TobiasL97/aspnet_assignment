@@ -13,7 +13,20 @@ namespace aspnet_assignment.Models.Identity
         public string? ProfileImage { get; set; }
 
         public ICollection<UserAddressEntity> Addresses { get; set; } = new HashSet<UserAddressEntity>();
-    }
+
+
+		public static implicit operator CustomUser(AdminEditUserViewModel viewModel)
+		{
+			return new CustomUser
+			{
+				Id = viewModel.Id,
+				FirstName = viewModel.FirstName,
+				LastName = viewModel.LastName,
+				CompanyName = viewModel.CompanyName,
+				Email = viewModel.Email!,
+			};
+		}
+	}
 
 
 }

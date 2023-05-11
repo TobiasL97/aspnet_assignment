@@ -5,16 +5,7 @@ namespace aspnet_assignment.Helpers.Services
 {
     public class RoleService
     {
-        private readonly UserManager<CustomUser> _userManager;
 
-        public RoleService(UserManager<CustomUser> userManager)
-        {
-            _userManager = userManager;
-        }
 
-        public async Task GetAllRoles()
-        {
-            
-        }
     }
 }
