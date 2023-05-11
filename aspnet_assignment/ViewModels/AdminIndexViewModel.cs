@@ -5,6 +5,7 @@ namespace aspnet_assignment.ViewModels
 {
     public class AdminIndexViewModel
     {
+        public string Id { get; set; } = null!;
         public string? FirstName { get; set;}
         public string? LastName { get; set;}
         public string? Email { get; set;}
@@ -22,6 +23,7 @@ namespace aspnet_assignment.ViewModels
         {
             return new AdminIndexViewModel
             {
+                Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,

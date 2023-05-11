@@ -15,6 +15,7 @@
                 {
                     <div class="list-item">
                         <div>
+                            <p>@user.Id</p>
                             <label class="list-item-label me-1">Name: </label>
                             <p class="me-2">@user.FirstName</p>
                             <p>@user.LastName</p>
@@ -25,22 +26,18 @@
                         </div>
                         @foreach(var role in user.Roles)
                         {
-                            <div>
-                                <label class="list-item-label me-1">Role:</label>
+                            <div id="role">
+                                <label  class="list-item-label me-1">Role:</label>
                                 <p>@role</p>
                             </div>
                         }
 
                         <div class="list-item-icons">
-                            <button><i class="fa-solid fa-pencil"></i></button>
+                            <a class="edit-user" asp-controller="Admin" asp-route-id="@user.Id" asp-action="EditUser"><i class="fa-solid fa-pencil"></i></a>
                             <button><i class="fa-solid fa-trash-can ms-3"></i></button>
                         </div>
                     </div>
-                    
-
-                    
-
-
+                   
                 }
             </div>
         </div>

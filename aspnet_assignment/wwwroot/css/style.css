@@ -1388,6 +1388,9 @@ footer .container {
   border: none;
   padding: 0px;
 }
+.admin-controls > .container .list .list-item .edit-user {
+  color: #202020;
+}
 .admin-controls > .container .create-btn {
   text-align: right;
 }

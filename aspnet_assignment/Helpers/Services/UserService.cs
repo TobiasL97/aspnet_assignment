@@ -1,4 +1,6 @@
-﻿using aspnet_assignment.Models.Identity;
+﻿using aspnet_assignment.Contexts;
+using aspnet_assignment.Helpers.Repositories;
+using aspnet_assignment.Models.Identity;
 using aspnet_assignment.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,16 +12,30 @@ namespace aspnet_assignment.Helpers.Services
     public class UserService
     {
         private readonly UserManager<CustomUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IdentityContext _context;
 
 
-        public UserService(UserManager<CustomUser> userManager, RoleManager<IdentityRole> roleManager)
+
+		public UserService(UserManager<CustomUser> userManager, IdentityContext context)
+		{
+			_userManager = userManager;
+			_context = context;
+		}
+
+
+		public async Task<CustomUser> GetUser(string Id)
         {
-            _userManager = userManager;
-            _roleManager = roleManager;
-        }
+            var user = await _userManager.FindByIdAsync(Id);
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+				return null!;
+			}
 
-        
+        }
 
 
         public async Task<List<CustomUser>> GetAllUsersAsync()
@@ -47,5 +63,15 @@ namespace aspnet_assignment.Helpers.Services
 
             return listSortedByRole;
         }
-    }
+
+		public async Task<CustomUser> GetUserAddressAsync(string id)
+		{
+            var user = await _userManager.Users.Include(x => x.Addresses).ThenInclude(x => x.Address).FirstOrDefaultAsync(x => x.Id == id);
+
+
+			return user!;
+		}
+
+
+	}
 }

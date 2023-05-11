@@ -1,4 +1,6 @@
-﻿using aspnet_assignment.Helpers.Services;
+﻿using aspnet_assignment.Contexts;
+using aspnet_assignment.Helpers.Repositories;
+using aspnet_assignment.Helpers.Services;
 using aspnet_assignment.Models.Identity;
 using aspnet_assignment.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -12,10 +14,17 @@ namespace aspnet_assignment.Controllers
     public class AdminController : Controller
     {
 		private readonly AuthenticationService _authService;
+		private readonly UserService _userService;
+		private readonly UserAddressRepository _userAddressRepository;
+		private readonly AddressService _addressService;
+		private readonly IdentityContext _context;
 
-		public AdminController(AuthenticationService authService)
+		public AdminController(AuthenticationService authService, UserService userService, UserAddressRepository userAddressRepository, IdentityContext context)
 		{
 			_authService = authService;
+			_userService = userService;
+			_userAddressRepository = userAddressRepository;
+			_context = context;
 		}
 
 		[Authorize(Roles = "Admin")]
@@ -49,6 +58,39 @@ namespace aspnet_assignment.Controllers
 
 			}
 			return View(viewModel);
+		}
+
+
+
+		[HttpGet]
+		public async Task<IActionResult> EditUser(string Id)
+		{
+			var user = await _userService.GetUserAddressAsync(Id);
+			//var user = await _userService
+			//var address = await _addressService.GetUserAddressAsync(Id);
+
+			var userViewModel = new AdminEditUserViewModel
+			{
+				FirstName = user.FirstName,
+				LastName = user.LastName,
+				Mobile = user.PhoneNumber,
+				Email = user.Email!,
+				CompanyName = user.CompanyName,
+
+
+				
+			};
+			foreach(var address in user.Addresses)
+			{
+				if(address != null)
+				{
+					userViewModel.StreetName = address.Address.StreetName;
+					userViewModel.City = address.Address.City;
+					userViewModel.PostalCode = address.Address.PostalCode;
+				}
+			}
+
+			return View(userViewModel);
 		}
 	}
 }

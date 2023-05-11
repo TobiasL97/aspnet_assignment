@@ -1,6 +1,9 @@
-﻿using aspnet_assignment.Helpers.Repositories;
+﻿using aspnet_assignment.Contexts;
+using aspnet_assignment.Helpers.Repositories;
 using aspnet_assignment.Models.Entities;
 using aspnet_assignment.Models.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 
 namespace aspnet_assignment.Helpers.Services
 {
@@ -10,13 +13,13 @@ namespace aspnet_assignment.Helpers.Services
         private readonly UserAddressRepository _userAddressRepo;
 
 
-        public AddressService(AddressRepository addressRepo, UserAddressRepository userAddressRepo)
-        {
-            _addressRepo = addressRepo;
-            _userAddressRepo = userAddressRepo;
-        }
+		public AddressService(AddressRepository addressRepo, UserAddressRepository userAddressRepo)
+		{
+			_addressRepo = addressRepo;
+			_userAddressRepo = userAddressRepo;
+		}
 
-        public async Task<AddressEntity> GetOrCreateAddressAsync(AddressEntity addressEntity)
+		public async Task<AddressEntity> GetOrCreateAddressAsync(AddressEntity addressEntity)
         {
             var entity = await _addressRepo.GetAsync(x => x.StreetName == addressEntity.StreetName && x.City == addressEntity.City && x.PostalCode == addressEntity.PostalCode);
             if(entity == null)
@@ -34,5 +37,8 @@ namespace aspnet_assignment.Helpers.Services
                 AddressId = addressEntity.Id,
             });
         }
-    }
+
+        
+
+	}
 }
