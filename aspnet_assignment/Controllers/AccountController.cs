@@ -11,22 +11,27 @@ namespace aspnet_assignment.Controllers
     {
         private readonly AuthenticationService _authService;
         private readonly SignInManager<CustomUser> _signInManager;
+        private readonly UserService _userService;
 
-        public AccountController(AuthenticationService authService, SignInManager<CustomUser> signInManager)
+        public AccountController(AuthenticationService authService, SignInManager<CustomUser> signInManager, UserService userService)
         {
             _authService = authService;
             _signInManager = signInManager;
+            _userService = userService;
         }
 
         [Authorize]
-        public IActionResult Index(CustomUser user)
+        public async Task<IActionResult> Index(string Id)
         {
+            var user = await _userService.GetUser(Id);
+
             var viewModel = new MyAccountViewModel
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email!,
                 ImageUrl = user.ProfileImage!,
+                PhoneNumber = user.PhoneNumber!
             };
             return View(viewModel);
         }

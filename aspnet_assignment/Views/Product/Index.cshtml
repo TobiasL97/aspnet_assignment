@@ -1,14 +1,13 @@
-﻿@model TopSellingViewModel
+﻿@model ProductViewModel
 
 @if(Model != null)
 {
-    <section class="top-selling-grid">
-        <div class="container-fluid">
-            <h1 class="grid-title">Top selling products in this week</h1>
-            <div class="grid">
-                @if(Model.Products != null)
+    <section class="product-section">
+        <div class="container">
+            <div class="product-grid">
+                @foreach (var product in Model.Products.Take(8))
                 {
-                    @foreach(var product in Model.Products.Take(7))
+                    @if (product != null)
                     {
                         <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product?.Id" class="grid-item">
                             @foreach (var image in product.Images.Take(1))
@@ -31,10 +30,7 @@
                     }
                 }
             </div>
-            <div class="load-more">
-                <button class="btn-outline-white me-1"><i class="fa-solid fa-chevron-left"></i></button>
-                <button class="btn-outline-white ms-1"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
         </div>
+
     </section>
 }

@@ -18,9 +18,14 @@ namespace aspnet_assignment.Controllers
             _imageService = imageService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var viewModel = new ProductViewModel
+            {
+                Products = await _productService.GetAllProductsAsync()
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet]

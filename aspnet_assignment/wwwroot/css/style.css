@@ -1450,3 +1450,19 @@ footer .container {
   background-color: red;
   font-size: 10px;
 }
+
+.my-account {
+  padding-top: 100px;
+}
+.my-account > .container .profile-image {
+  border-radius: 50%;
+}
+
+.product-section {
+  padding-top: 100px;
+}
+.product-section > .container .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 10px;
+}

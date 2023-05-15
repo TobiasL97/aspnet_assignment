@@ -1,23 +1,74 @@
-﻿<section class="up-to-sell-grid">
-    <div class="container">
-        <div class="grid">
-            <div class="item-1">
-                <partial name="/Views/Partials/_Grid-item.cshtml" />
-            </div>
-            <div class="discover">
-                <div class="grid-content">
-                    <div class="container">
-                        <div class="title-red">UP TO SELL</div>
-                        <div class="title">50% OFF</div>
-                        <div class="ingress">Get the Best Price</div>
-                        <div class="text">Get the best daily offer et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren no sea taki</div>
-                        <a href="#" class="link">Discover More</a>
+﻿@model UpToSellViewModel
+
+@if(Model != null)
+{
+    <section class="up-to-sell-grid">
+        <div class="container">
+            <div class="grid">
+                <div class="item-1">
+                    @foreach (var product in Model.Products.Take(1))
+                    {
+                        @if (product != null)
+                        {
+                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product?.Id" class="grid-item">
+                                @foreach (var image in product.Images.Take(1))
+                                {
+                                    if (image != null)
+                                    {
+                                        <img src="~/images/products/@image.ImageUrl" alt="Product Image">
+                                    }
+
+                                }
+
+                                <div class="body">
+                                    <div class="title">@product?.Title</div>
+                                    <div class="info">
+                                        <div class="price">$@product?.Price</div>
+                                        <i class="add-cart fa-regular fa-cart-plus"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    }
+                </div>
+                <div class="discover">
+                    <div class="grid-content">
+                        <div class="container">
+                            <div class="title-red">UP TO SELL</div>
+                            <div class="title">50% OFF</div>
+                            <div class="ingress">Get the Best Price</div>
+                            <div class="text">Get the best daily offer et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren no sea taki</div>
+                            <a href="#" class="link">Discover More</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="item-2">
-                <partial name="/Views/Partials/_Grid-item.cshtml" />
+                <div class="item-2">
+                    @foreach (var product in Model.Products.Take(1))
+                    {
+                        @if (product != null)
+                        {
+                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product?.Id" class="grid-item">
+                                @foreach (var image in product.Images.Take(1))
+                                {
+                                    if (image != null)
+                                    {
+                                        <img src="~/images/products/@image.ImageUrl" alt="Product Image">
+                                    }
+
+                                }
+
+                                <div class="body">
+                                    <div class="title">@product?.Title</div>
+                                    <div class="info">
+                                        <div class="price">$@product?.Price</div>
+                                        <i class="add-cart fa-regular fa-cart-plus"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    }
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
