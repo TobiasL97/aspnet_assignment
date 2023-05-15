@@ -19,9 +19,16 @@ namespace aspnet_assignment.Controllers
         }
 
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(CustomUser user)
         {
-            return View();
+            var viewModel = new MyAccountViewModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email!,
+                ImageUrl = user.ProfileImage!,
+            };
+            return View(viewModel);
         }
 
         #region SignUp
@@ -43,6 +50,10 @@ namespace aspnet_assignment.Controllers
 
                 if(await _authService.CreateUserAsync(viewModel))
                 {
+                    if(viewModel.Image != null)
+                    {
+                        await _authService.UploadProfileImage(viewModel.Image);
+                    }
                     return RedirectToAction("SignIn", "Account");
                 }
 

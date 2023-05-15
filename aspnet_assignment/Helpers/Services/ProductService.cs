@@ -34,13 +34,13 @@ namespace aspnet_assignment.Helpers.Services
                     CategoryId = categoryId,
                 });
             }
-            await _imageService.AddImageAsync(viewModel, productEntity);
+            _imageService.AddProductImages(viewModel, productEntity);
 
             _context.Products.Add(productEntity);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> UploadImageAsync(List<IFormFile> images)
+        public async Task<bool> UploadProductImagesAsync(List<IFormFile> images)
         {
             try
             {

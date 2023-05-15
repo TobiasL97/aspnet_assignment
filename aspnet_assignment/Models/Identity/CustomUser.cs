@@ -24,6 +24,8 @@ namespace aspnet_assignment.Models.Identity
 				LastName = viewModel.LastName,
 				CompanyName = viewModel.CompanyName,
 				Email = viewModel.Email!,
+				UserName = viewModel.Email,
+				PhoneNumber = viewModel.Mobile,
 			};
 		}
 	}

@@ -66,7 +66,7 @@ namespace aspnet_assignment.ViewModels
                 LastName = model.LastName,
                 Email = model.Email,
                 CompanyName = model.Company,
-                PhoneNumber = model.Phonenumber
+                PhoneNumber = model.Phonenumber,
             };
         }
 

@@ -1,5 +1,6 @@
 ﻿using aspnet_assignment.Contexts;
 using aspnet_assignment.Models.Entities;
+using aspnet_assignment.Models.Identity;
 using aspnet_assignment.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,7 @@ namespace aspnet_assignment.Helpers.Services
             _context = context;
         }
 
-        public async Task<bool> AddImageAsync(CreateProductViewModel viewModel, ProductEntity entity)
+        public bool AddProductImages(CreateProductViewModel viewModel, ProductEntity entity)
         {
             try
             {
@@ -27,6 +28,16 @@ namespace aspnet_assignment.Helpers.Services
 
                     entity.Images.Add(productImage);
                 }
+                return true;
+            }
+            catch { return false; }
+        }
+
+        public bool AddProfileImage(string filename, CustomUser user)
+        {
+            try
+            {
+                user.ProfileImage = filename;
                 return true;
             }
             catch { return false; }

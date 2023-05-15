@@ -19,13 +19,15 @@ namespace aspnet_assignment.Controllers
 		private readonly AddressService _addressService;
 		private readonly IdentityContext _context;
 		private readonly SignInManager<CustomUser> _signInManager;
+		private readonly UserManager<CustomUser> _userManager;
 
-		public AdminController(AuthenticationService authService, UserService userService, UserAddressRepository userAddressRepository, IdentityContext context)
+		public AdminController(AuthenticationService authService, UserService userService, UserAddressRepository userAddressRepository, IdentityContext context, UserManager<CustomUser> userManager)
 		{
 			_authService = authService;
 			_userService = userService;
 			_userAddressRepository = userAddressRepository;
 			_context = context;
+			_userManager = userManager;
 		}
 
 		[Authorize(Roles = "Admin")]
@@ -94,13 +96,10 @@ namespace aspnet_assignment.Controllers
 		{
 			if(ModelState.IsValid)
 			{
+				
 				await _userService.UpdateUserAsync(viewModel);
-				await _signInManager.RefreshSignInAsync(viewModel);
-
-				return RedirectToAction("index", "Home");
-
-
-
+				return RedirectToAction("index");
+				
 			}
 
 			return View(viewModel);

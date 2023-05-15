@@ -64,7 +64,7 @@ namespace aspnet_assignment.Controllers
             if(ModelState.IsValid)
             {
                 await _productService.CreateProductAsync(viewModel);
-                await _productService.UploadImageAsync(viewModel.Images);
+                await _productService.UploadProductImagesAsync(viewModel.Images);
 
                 return RedirectToAction("Index", "Admin");
             }

@@ -100,11 +100,12 @@ namespace aspnet_assignment.Helpers.Services
                     {
                         await _userManager.RemoveFromRoleAsync(user, role);
                         await _userManager.AddToRoleAsync(user, viewModel.Role);
-                    }
-                }
-			}
+					}
+				}
 
-            await _identityContext.SaveChangesAsync();
+				await _identityContext.SaveChangesAsync();
+
+			}
 		}
 	}
 }
