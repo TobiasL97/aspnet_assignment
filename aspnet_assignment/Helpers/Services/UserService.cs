@@ -87,6 +87,8 @@ namespace aspnet_assignment.Helpers.Services
 				user.Email = viewModel.Email;
 				user.PhoneNumber = viewModel.Mobile;
 				user.CompanyName = viewModel.CompanyName;
+                user.NormalizedEmail = viewModel.Email.ToUpper();
+                user.NormalizedUserName = viewModel.Email.ToUpper();
 				foreach (var address in user.Addresses)
 				{
 					address.Address.StreetName = viewModel.StreetName;

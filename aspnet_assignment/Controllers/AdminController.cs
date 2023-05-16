@@ -77,6 +77,7 @@ namespace aspnet_assignment.Controllers
 				Mobile = user.PhoneNumber,
 				Email = user.Email!,
 				CompanyName = user.CompanyName,
+				
 			};
 			foreach(var address in user.Addresses)
 			{

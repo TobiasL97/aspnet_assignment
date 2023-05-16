@@ -1,12 +1,18 @@
 .product-section {
     padding-top: 100px;
+
     > .container {
 
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+            justify-content: center;
+            grid-template-columns: repeat(auto-fit, minmax(175px, 270px));
             gap: 10px;
+
+            @include lg {
+                justify-content: start;
+            }
         }
     }
 }

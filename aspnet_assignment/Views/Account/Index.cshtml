@@ -5,11 +5,12 @@
 
 <section class="my-account">
     <div class="container">
-        @if(Model.ImageUrl != null)
-        {
-            <img class="profile-image" src="~/images/profileimages/@Model.ImageUrl" />
-        }
-        <p>@Model.FirstName</p>
-        <p>@Model.LastName</p>
+        <div class="user-information">
+            @if (Model.ImageUrl != null)
+            {
+                <img class="profile-image" src="~/images/profileimages/@Model.ImageUrl" />
+            }
+            <p class="ms-5">Hello @Model.FirstName @Model.LastName and welcome to your Account page</p>
+        </div>
     </div>
 </section>

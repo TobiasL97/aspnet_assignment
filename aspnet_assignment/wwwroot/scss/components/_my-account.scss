@@ -1,11 +1,17 @@
 .my-account {
     padding-top: 100px;
 
-    >.container {
+    > .container {
 
-        .profile-image {
+        .user-information {
+            display: flex;
+            align-items: center;
 
-            border-radius: 50%;
+            .profile-image {
+                border-radius: 50%;
+                width: 200px;
+                height: 230px;
+            }
         }
     }
 }
