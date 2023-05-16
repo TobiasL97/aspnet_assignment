@@ -64,6 +64,7 @@ namespace aspnet_assignment.Controllers
 		}
 
 
+
 		[Authorize(Roles = "Admin")]
 		[HttpGet]
 		public async Task<IActionResult> EditUser(string Id)
@@ -104,6 +105,24 @@ namespace aspnet_assignment.Controllers
 			}
 
 			return View(viewModel);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> DeleteUser(string id)
+		{
+			var user = await _userService.GetUserAsync(id);
+
+			if(user != null)
+			{
+				await _userManager.DeleteAsync(user);
+				await _context.SaveChangesAsync();
+                return Ok();
+            }
+			else
+			{
+				return BadRequest();
+			}
+			
 		}
 	}
 }

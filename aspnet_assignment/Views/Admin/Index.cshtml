@@ -4,6 +4,8 @@
     var products = await productService.GetAllProductsAsync();
 }
 
+
+
 <section class="admin-controls">
     <div class="container">
         <div class="user-list">
@@ -33,7 +35,7 @@
 
                         <div class="list-item-icons">
                             <a class="edit-user" asp-controller="Admin" asp-route-id="@user.Id" asp-action="EditUser"><i class="fa-solid fa-pencil"></i></a>
-                            <button><i class="fa-solid fa-trash-can ms-3"></i></button>
+                            <button id="delete-btn" data-user-id="@user.Id" type="submit"><i class="fa-solid fa-trash-can ms-3"></i></button>
                         </div>
                     </div>
                    
@@ -98,4 +100,39 @@
         </div>
     </div>
 </section>
+
+<script>
+    const deleteBtns = document.querySelectorAll('#delete-btn');
+
+    deleteBtns.forEach((button) => {
+        button.addEventListener('click', () => {
+            const userId = button.getAttribute('data-user-id');
+
+            const confirmDelete = confirm("Are you sure you want to delete this user?")
+
+            if(confirmDelete) {
+                fetch('/Admin/DeleteUser/' + userId, {
+                    method: 'POST'
+                })
+                .then((response) => {
+                    if (response.ok) {
+                        console.log("User was deleted");
+                        const listItem = button.closest('.list-item');
+                        listItem.remove();
+                    }
+                    else {
+                        console.log("Error deleting user");
+                    }
+                })
+                .catch((error) => {
+                    console.log("Error deleting user");
+                })
+            }
+        })
+    })
+
+
+</script>
+
+
 

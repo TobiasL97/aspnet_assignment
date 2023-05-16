@@ -23,7 +23,7 @@ namespace aspnet_assignment.Controllers
         [Authorize]
         public async Task<IActionResult> Index(string Id)
         {
-            var user = await _userService.GetUser(Id);
+            var user = await _userService.GetUserAsync(Id);
 
             var viewModel = new MyAccountViewModel
             {

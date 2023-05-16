@@ -27,7 +27,7 @@ namespace aspnet_assignment.Helpers.Services
 		}
 
 
-		public async Task<CustomUser> GetUser(string Id)
+		public async Task<CustomUser> GetUserAsync(string Id)
         {
             var user = await _userManager.FindByIdAsync(Id);
             if (user != null)
