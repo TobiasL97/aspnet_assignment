@@ -64,6 +64,20 @@ namespace aspnet_assignment.Helpers.Services
             else return null!;
         }
 
+        public async Task<ProductEntity> GetProductByIdAsync(Guid id)
+        {
+            var product = await _context.Products.Include(x => x.Categories).FirstOrDefaultAsync(x => x.Id == id);
+
+            if(product != null)
+            {
+                return product;
+            }
+            else
+            {
+                return null!;
+            }
+        }
+
         public async Task<IEnumerable<ProductEntity>> GetAllProductsAsync()
         {
             return await _context.Products.Include(x => x.Stock).Include(x => x.Categories).ThenInclude(x => x.Category).Include(x => x.Images).ToListAsync();
@@ -82,6 +96,35 @@ namespace aspnet_assignment.Helpers.Services
             }
 
             else return null!;
+        }
+
+        public async Task UpdateProductAsync(AdminEditProductViewModel viewModel)
+        {
+            var product = await GetProductByIdAsync(viewModel.Id);
+
+            if (product != null)
+            {
+                product.Title = viewModel.Title!;
+                product.Price = viewModel.Price;
+                product.Description = viewModel.Description!;
+                product.Categories.Clear();
+
+                foreach (var categoryId in viewModel.Categories)
+                {
+                    product.Categories.Add(new ProductCategoryEntity
+                    {
+                        ProductId = viewModel.Id,
+                        CategoryId = categoryId
+                    });
+                }
+            }
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task RemoveProductAsync(ProductEntity product)
+        {
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
         }
     }
 }

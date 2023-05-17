@@ -15,7 +15,7 @@
             <div class="list">
                 @foreach(var user in users)
                 {
-                    <div class="list-item">
+                    <div class="list-item-user">
                         <div>
                             <label class="list-item-label me-1">Name: </label>
                             <p class="me-2">@user.FirstName</p>
@@ -34,8 +34,8 @@
                         }
 
                         <div class="list-item-icons">
-                            <a class="edit-user" asp-controller="Admin" asp-route-id="@user.Id" asp-action="EditUser"><i class="fa-solid fa-pencil"></i></a>
-                            <button id="delete-btn" data-user-id="@user.Id" type="submit"><i class="fa-solid fa-trash-can ms-3"></i></button>
+                            <a class="edit" asp-controller="Admin" asp-route-id="@user.Id" asp-action="EditUser"><i class="fa-solid fa-pencil"></i></a>
+                            <button id="user-delete-btn" data-user-id="@user.Id" type="submit"><i class="fa-solid fa-trash-can ms-3"></i></button>
                         </div>
                     </div>
                    
@@ -49,7 +49,7 @@
             <div class="list">
                 @foreach(var product in products)
                 {
-                    <div class="list-item">
+                    <div class="list-item-product">
                         
                         <div class="list-item-content">
                             @if(product != null)
@@ -85,15 +85,15 @@
                                         }
                                     </div>
                                 </div>
-                                <div class="list-item-icons">
-                                    <a aspasp-controller="Admin" asp-route-id="@product.id"><i class="fa-solid fa-pencil"></i></a>
-                                    <button><i class="fa-solid fa-trash-can ms-3"></i></button>
-                                </div>
+
                             }
 
 
                         </div>
-
+                        <div class="list-item-icons">
+                            <a class="edit" asp-controller="Admin" asp-action="EditProduct" asp-route-id="@product.Id"><i class="fa-solid fa-pencil"></i></a>
+                            <button id="product-delete-button" data-product-id="@product.Id" type="submit"><i class="fa-solid fa-trash-can ms-3"></i></button>
+                        </div>
 
                     </div>
                 }
@@ -103,9 +103,9 @@
 </section>
 
 <script>
-    const deleteBtns = document.querySelectorAll('#delete-btn');
+    const userDeleteBtns = document.querySelectorAll('#user-delete-btn');
 
-    deleteBtns.forEach((button) => {
+    userDeleteBtns.forEach((button) => {
         button.addEventListener('click', () => {
             const userId = button.getAttribute('data-user-id');
 
@@ -118,7 +118,7 @@
                 .then((response) => {
                     if (response.ok) {
                         console.log("User was deleted");
-                        const listItem = button.closest('.list-item');
+                        const listItem = button.closest('.list-item-user');
                         listItem.remove();
                     }
                     else {
@@ -127,6 +127,35 @@
                 })
                 .catch((error) => {
                     console.log("Error deleting user");
+                })
+            }
+        })
+    })
+
+    const productDeleteBtns = document.querySelectorAll('#product-delete-button');
+
+    productDeleteBtns.forEach((button) => {
+        button.addEventListener('click', () => {
+            const productId = button.getAttribute('data-product-id');
+
+            const confirmDelete = confirm("Are you sure you want to delete this Product?")
+
+            if(confirmDelete) {
+                fetch('/Admin/DeleteProduct/' + productId, {
+                    method: 'POST'
+                })
+                .then((response) => {
+                    if(response.ok) {
+                        console.log("Product was deleted");
+                            const listItem = button.closest('.list-item-product');
+                            listItem.remove();
+                    }
+                    else {
+                        console.log("Error removing product");
+                    }
+                })
+                .catch((error) => {
+                    console.log("Error deleteing product")
                 })
             }
         })

@@ -1,11 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using aspnet_assignment.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace aspnet_assignment.ViewModels
 {
     public class AdminEditProductViewModel
     {
+        public Guid Id { get; set; }
+
         [Display(Name = "Enter a title")]
-        public string Title { get; set; } = null!;
+        public string? Title { get; set; }
 
         [Display(Name = "Enter a price")]
         public decimal Price { get; set; }

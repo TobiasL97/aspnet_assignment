@@ -15,21 +15,20 @@
             padding: 20px;
             height: 70vh;
 
-            .list-item {
+            .list-item-user {
                 display: flex;
                 border-bottom: 1px solid $color-dark-4;
                 margin-bottom: 20px;
                 justify-content: space-between;
-                
+
                 .list-item-content {
 
                     .list-item-span {
-
                         font-size: 14px;
                     }
                 }
 
-                >div {
+                > div {
                     display: flex;
                     align-items: center;
 
@@ -47,7 +46,6 @@
                 }
 
                 .list-item-label {
-
                     font-weight: $font-weight-semibold;
                     font-size: 14px;
                 }
@@ -55,17 +53,64 @@
                 .list-item-icons {
 
                     > button {
-
                         background-color: transparent;
                         border: none;
                         padding: 0px;
                     }
                 }
 
-                .edit-user {
+                .edit {
                     color: $color-dark-1;
                 }
-                
+            }
+
+            .list-item-product {
+                display: flex;
+                border-bottom: 1px solid $color-dark-4;
+                margin-bottom: 20px;
+                justify-content: space-between;
+
+                .list-item-content {
+
+                    .list-item-span {
+                        font-size: 14px;
+                    }
+                }
+
+                > div {
+                    display: flex;
+                    align-items: center;
+
+
+                    > p {
+                        margin-bottom: 0px;
+                        font-size: 14px;
+                    }
+                }
+
+                .list-item-image {
+                    width: 70px;
+                    margin-bottom: 10px;
+                    object-fit: contain;
+                }
+
+                .list-item-label {
+                    font-weight: $font-weight-semibold;
+                    font-size: 14px;
+                }
+
+                .list-item-icons {
+
+                    > button {
+                        background-color: transparent;
+                        border: none;
+                        padding: 0px;
+                    }
+                }
+
+                .edit {
+                    color: $color-dark-1;
+                }
             }
         }
 
@@ -84,10 +129,8 @@
                 &:hover {
                     background-color: #9c1e31;
                     cursor: pointer;
-                    
                 }
             }
         }
-
     }
 }

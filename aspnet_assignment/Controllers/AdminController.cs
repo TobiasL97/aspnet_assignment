@@ -17,20 +17,26 @@ namespace aspnet_assignment.Controllers
 		private readonly UserService _userService;
 		private readonly UserAddressRepository _userAddressRepository;
 		private readonly AddressService _addressService;
-		private readonly IdentityContext _context;
+		private readonly IdentityContext _identityContext;
+		private readonly DataContext _dataContext;
 		private readonly SignInManager<CustomUser> _signInManager;
 		private readonly UserManager<CustomUser> _userManager;
+		private readonly ProductService _productService;
+		private readonly CategoryService _categoryService;
 
-		public AdminController(AuthenticationService authService, UserService userService, UserAddressRepository userAddressRepository, IdentityContext context, UserManager<CustomUser> userManager)
-		{
-			_authService = authService;
-			_userService = userService;
-			_userAddressRepository = userAddressRepository;
-			_context = context;
-			_userManager = userManager;
-		}
+        public AdminController(AuthenticationService authService, UserService userService, UserAddressRepository userAddressRepository, UserManager<CustomUser> userManager, ProductService productService, CategoryService categoryService, IdentityContext identityContext, DataContext dataContext)
+        {
+            _authService = authService;
+            _userService = userService;
+            _userAddressRepository = userAddressRepository;
+            _userManager = userManager;
+            _productService = productService;
+            _categoryService = categoryService;
+            _identityContext = identityContext;
+            _dataContext = dataContext;
+        }
 
-		[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public  IActionResult Index()
         {
 
@@ -115,7 +121,7 @@ namespace aspnet_assignment.Controllers
 			if(user != null)
 			{
 				await _userManager.DeleteAsync(user);
-				await _context.SaveChangesAsync();
+				await _identityContext.SaveChangesAsync();
                 return Ok();
             }
 			else
@@ -125,9 +131,44 @@ namespace aspnet_assignment.Controllers
 			
 		}
 
-		public async Task<IActionResult> EditProduct(string id)
+		public async Task<IActionResult> EditProduct(Guid id)
 		{
-			return View();
+			var product = await _productService.GetProductByIdAsync(id);
+
+			var editProductViewModel = new AdminEditProductViewModel
+			{
+				Title = product.Title,
+				Description = product.Description,
+				Price = product.Price,
+			};
+
+			return View(editProductViewModel);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> EditProduct(AdminEditProductViewModel viewModel)
+		{
+			if(ModelState.IsValid)
+			{
+				await _productService.UpdateProductAsync(viewModel);
+				return RedirectToAction("index");
+			}
+
+			return View(viewModel);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> DeleteProduct(Guid id)
+		{
+			var product = await _productService.GetProductByIdAsync(id);
+
+			if(product != null)
+			{
+				await _productService.RemoveProductAsync(product);
+				return Ok();
+			}
+
+			return BadRequest();
 		}
 	}
 }

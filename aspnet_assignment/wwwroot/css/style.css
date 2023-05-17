@@ -1358,38 +1358,72 @@ footer .container {
   padding: 20px;
   height: 70vh;
 }
-.admin-controls > .container .list .list-item {
+.admin-controls > .container .list .list-item-user {
   display: flex;
   border-bottom: 1px solid #AEAEAE;
   margin-bottom: 20px;
   justify-content: space-between;
 }
-.admin-controls > .container .list .list-item .list-item-content .list-item-span {
+.admin-controls > .container .list .list-item-user .list-item-content .list-item-span {
   font-size: 14px;
 }
-.admin-controls > .container .list .list-item > div {
+.admin-controls > .container .list .list-item-user > div {
   display: flex;
   align-items: center;
 }
-.admin-controls > .container .list .list-item > div > p {
+.admin-controls > .container .list .list-item-user > div > p {
   margin-bottom: 0px;
   font-size: 14px;
 }
-.admin-controls > .container .list .list-item .list-item-image {
+.admin-controls > .container .list .list-item-user .list-item-image {
   width: 70px;
   margin-bottom: 10px;
   object-fit: contain;
 }
-.admin-controls > .container .list .list-item .list-item-label {
+.admin-controls > .container .list .list-item-user .list-item-label {
   font-weight: 600;
   font-size: 14px;
 }
-.admin-controls > .container .list .list-item .list-item-icons > button {
+.admin-controls > .container .list .list-item-user .list-item-icons > button {
   background-color: transparent;
   border: none;
   padding: 0px;
 }
-.admin-controls > .container .list .list-item .edit-user {
+.admin-controls > .container .list .list-item-user .edit {
+  color: #202020;
+}
+.admin-controls > .container .list .list-item-product {
+  display: flex;
+  border-bottom: 1px solid #AEAEAE;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.admin-controls > .container .list .list-item-product .list-item-content .list-item-span {
+  font-size: 14px;
+}
+.admin-controls > .container .list .list-item-product > div {
+  display: flex;
+  align-items: center;
+}
+.admin-controls > .container .list .list-item-product > div > p {
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+.admin-controls > .container .list .list-item-product .list-item-image {
+  width: 70px;
+  margin-bottom: 10px;
+  object-fit: contain;
+}
+.admin-controls > .container .list .list-item-product .list-item-label {
+  font-weight: 600;
+  font-size: 14px;
+}
+.admin-controls > .container .list .list-item-product .list-item-icons > button {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
+.admin-controls > .container .list .list-item-product .edit {
   color: #202020;
 }
 .admin-controls > .container .create-btn {
