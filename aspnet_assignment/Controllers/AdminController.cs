@@ -124,5 +124,10 @@ namespace aspnet_assignment.Controllers
 			}
 			
 		}
+
+		public async Task<IActionResult> EditProduct(string id)
+		{
+			return View();
+		}
 	}
 }
