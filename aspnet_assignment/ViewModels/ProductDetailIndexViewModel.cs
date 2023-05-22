@@ -1,4 +1,4 @@
-﻿using aspnet_assignment.Models.Entities;
+﻿using aspnet_assignment.Models;
 
 namespace aspnet_assignment.ViewModels
 {
@@ -8,7 +8,7 @@ namespace aspnet_assignment.ViewModels
 
         public ProductDetailInfoViewModel ProductDetailInfo { get; set; } = null!;
 
-        public List<ProductEntity> Products { get; set; } = new List<ProductEntity>();
+        public IEnumerable<ProductModel> Products { get; set; } = new List<ProductModel>();
 
     }
 }

@@ -50,7 +50,7 @@ namespace aspnet_assignment.Controllers
                     Images = product.Images,
                 },
 
-                Products = (List<ProductEntity>)await _productService.GetAllRelatedProductsAsync(entity.Id)
+                Products = await _productService.GetAllRelatedProductsAsync(entity.Id)
 
             };
             return View(viewModel);
