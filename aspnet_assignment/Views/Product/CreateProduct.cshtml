@@ -11,10 +11,12 @@
                 <div class="mb-4">
                     <label class="form-label" asp-for="Title"></label>
                     <input class="form-control" asp-for="Title"/>
+                    <small class="text-danger"><span asp-validation-for="Title"></span></small>
                 </div>
                 <div class="mb-4">
                     <label class="form-label" asp-for="Price"></label>
                     <input class="form-control" asp-for="Price" />
+                    <small class="text-danger"><span asp-validation-for="Price"></span></small>
                 </div>
                 <div class="mb-4">
                     <label class="form-label" asp-for="Description"></label>
@@ -30,10 +32,6 @@
                             }
 
                         </select>
-
-@*                        <button type="button" id="add-category-btn">Add Category</button>
-                        <button type="button" id="remove-category-btn">Remove Categories</button>*@
-
                     </div>
 
                     <div id="selected-categories">

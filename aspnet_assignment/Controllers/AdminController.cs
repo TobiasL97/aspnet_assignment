@@ -15,25 +15,17 @@ namespace aspnet_assignment.Controllers
     {
 		private readonly AuthenticationService _authService;
 		private readonly UserService _userService;
-		private readonly UserAddressRepository _userAddressRepository;
-		private readonly AddressService _addressService;
 		private readonly IdentityContext _identityContext;
-		private readonly DataContext _dataContext;
-		private readonly SignInManager<CustomUser> _signInManager;
 		private readonly UserManager<CustomUser> _userManager;
 		private readonly ProductService _productService;
-		private readonly CategoryService _categoryService;
 
-        public AdminController(AuthenticationService authService, UserService userService, UserAddressRepository userAddressRepository, UserManager<CustomUser> userManager, ProductService productService, CategoryService categoryService, IdentityContext identityContext, DataContext dataContext)
+        public AdminController(AuthenticationService authService, UserService userService, UserManager<CustomUser> userManager, ProductService productService, IdentityContext identityContext)
         {
             _authService = authService;
             _userService = userService;
-            _userAddressRepository = userAddressRepository;
             _userManager = userManager;
             _productService = productService;
-            _categoryService = categoryService;
             _identityContext = identityContext;
-            _dataContext = dataContext;
         }
 
         [Authorize(Roles = "Admin")]

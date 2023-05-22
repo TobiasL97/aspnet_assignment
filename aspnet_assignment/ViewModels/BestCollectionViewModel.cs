@@ -1,4 +1,5 @@
-﻿using aspnet_assignment.Models.Entities;
+﻿using aspnet_assignment.Models;
+using aspnet_assignment.Models.Entities;
 
 namespace aspnet_assignment.ViewModels
 {
@@ -8,6 +9,6 @@ namespace aspnet_assignment.ViewModels
 
         public IEnumerable<CategoryEntity> Categories { get; set; } = new List<CategoryEntity>();
 
-        public IEnumerable<ProductEntity> Products { get; set; } = new List<ProductEntity>();
+        public IEnumerable<ProductModel> Products { get; set; } = new List<ProductModel>();
     }
 }

@@ -14,17 +14,17 @@
 			<form method="post" enctype="multipart/form-data" class="signup-form">
 				<div>
 					<label asp-for="FirstName" class="form-label"></label>
-					<input asp-for="FirstName" class="form-control" />
+					<input asp-for="FirstName" class="form-control" onkeyup="validateText(event)"/>
 					<small class="text-danger"><span asp-validation-for="FirstName"></span></small>
 				</div>
 				<div>
 					<label asp-for="LastName" class="form-label">Last Name*</label>
-					<input asp-for="LastName" class="form-control" />
+					<input asp-for="LastName" class="form-control" onkeyup="validateText(event)" />
 					<small class="text-danger"><span asp-validation-for="LastName"></span></small>
 				</div>
 				<div class="form-long">
 					<label asp-for="StreetName" class="form-label">Street Name*</label>
-					<input asp-for="StreetName" class="form-control" />
+					<input asp-for="StreetName" class="form-control" onkeyup="validateText(event)" />
 					<small class="text-danger"><span asp-validation-for="StreetName"></span></small>
 				</div>
 				<div>
@@ -34,7 +34,7 @@
 				</div>
 				<div>
 					<label asp-for="City" class="form-label">City*</label>
-					<input asp-for="City" class="form-control" />
+					<input asp-for="City" class="form-control" onkeyup="validateText(event)" />
 					<small class="text-danger"><span asp-validation-for="City"></span></small>
 				</div>
 				<div>
@@ -47,12 +47,12 @@
 				</div>
 				<div class="form-long">
 					<label asp-for="Email" class="form-label">E-mail*</label>
-					<input asp-for="Email" class="form-control" />
+					<input asp-for="Email" class="form-control" onkeyup="validateEmail(event)" />
 					<small class="text-danger"><span asp-validation-for="Email"></span></small>
 				</div>
 				<div class="form-long">
 					<label asp-for="Password" class="form-label">Password*</label>
-					<input asp-for="Password" class="form-control" />
+					<input asp-for="Password" class="form-control" onkeyup="validatePassword(event)" />
 					<small class="text-danger"><span asp-validation-for="Password"></span></small>
 				</div>
 				<div class="form-long">

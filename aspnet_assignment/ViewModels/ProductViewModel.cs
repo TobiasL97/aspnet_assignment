@@ -1,9 +1,9 @@
-﻿using aspnet_assignment.Models.Entities;
+﻿using aspnet_assignment.Models;
 
 namespace aspnet_assignment.ViewModels
 {
     public class ProductViewModel
     {
-        public IEnumerable<ProductEntity> Products { get; set; } = new List<ProductEntity>();
+        public IEnumerable<ProductModel> Products { get; set; } = new List<ProductModel>();
     }
 }

@@ -75,7 +75,7 @@ namespace aspnet_assignment.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return View(viewModel);
             }
 
             

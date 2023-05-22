@@ -22,7 +22,7 @@ namespace aspnet_assignment.ViewModels
         [Display(Name = "Categories")]
         public List<Guid> Categories { get; set; } = new List<Guid>();
 
-        [Required(ErrorMessage = "You must enter an imageurl")]
+        [Required(ErrorMessage = "The product must have atleast one image")]
         [Display(Name = "ImageUrl*")]
         [DataType(DataType.Upload)]
         public List<IFormFile> Images { get; set; } = new List<IFormFile>();

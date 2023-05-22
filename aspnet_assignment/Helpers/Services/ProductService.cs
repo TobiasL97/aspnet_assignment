@@ -1,5 +1,6 @@
 ﻿using aspnet_assignment.Contexts;
 using aspnet_assignment.Helpers.Repositories;
+using aspnet_assignment.Models;
 using aspnet_assignment.Models.Entities;
 using aspnet_assignment.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -78,24 +79,38 @@ namespace aspnet_assignment.Helpers.Services
             }
         }
 
-        public async Task<IEnumerable<ProductEntity>> GetAllProductsAsync()
+        public async Task<IEnumerable<ProductModel>> GetAllProductsAsync()
         {
-            return await _context.Products.Include(x => x.Stock).Include(x => x.Categories).ThenInclude(x => x.Category).Include(x => x.Images).ToListAsync();
-
+            var products = await _context.Products.Include(x => x.Stock).Include(x => x.Categories).ThenInclude(x => x.Category).Include(x => x.Images).ToListAsync();
+            var productList = new List<ProductModel>();
+            foreach(var product in products)
+            {
+                ProductModel model = product;
+                productList.Add(model);
+            }
+            return productList;
         }
 
-        public async Task<IEnumerable<ProductEntity>> GetAllRelatedProductsAsync(Guid id)
+        public async Task<IEnumerable<ProductModel>> GetAllRelatedProductsAsync(Guid id)
         {
             var selectedProduct = await _context.Products.Include(x => x.Categories).ThenInclude(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);
+
 
             if (selectedProduct != null)
             {
                 var categoryIds = selectedProduct.Categories.Select(pc => pc.CategoryId);
                 var relatedProducts = await _context.Products.Include(x => x.Images).Include(p => p.Categories).ThenInclude(pc => pc.Category).Where(p => p.Categories.Any(pc => categoryIds.Contains(pc.CategoryId))).Where(x => x.Id != id).ToListAsync();
-                return relatedProducts!;
+                var productList = new List<ProductModel>();
+                foreach (var product in relatedProducts)
+                {
+                    ProductModel productModel = product;
+                    productList.Add(productModel);
+                }
+                return productList;
             }
 
-            else return null!;
+            else { return null!; }
+            
         }
 
         public async Task UpdateProductAsync(AdminEditProductViewModel viewModel)

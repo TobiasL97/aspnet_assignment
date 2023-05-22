@@ -1,9 +1,10 @@
-﻿using aspnet_assignment.Models.Entities;
+﻿using aspnet_assignment.Models;
+using aspnet_assignment.Models.Entities;
 
 namespace aspnet_assignment.ViewModels
 {
     public class UpToSellViewModel
     {
-        public IEnumerable<ProductEntity> Products { get; set; } = new List<ProductEntity>();
+        public IEnumerable<ProductModel> Products { get; set; } = new List<ProductModel>();
     }
 }
